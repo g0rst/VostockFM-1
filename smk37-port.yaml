@@ -1,0 +1,163 @@
+# smk37-port.yaml: every decision for the Vostok SMK-37 port, in one place.
+#
+# Template: genkigenki/fm1-to-smk37 (smk37-port.yaml, AGENTS.md, docs/06-mapping-patterns.md).
+# Filled from the Vostok concept ("Synthesizer der Zukunft / Синтезатор будущего").
+# STATUS: DRAFT – every value marked "proposal" waits for the owner's OK (AGENTS.md, step 0).
+# Change this file first, then the code.
+
+firmware:
+  name: "Vostok"                # a new firmware: free in name and look. Boards: "Vostok FM-1", "Vostok SMK-37"
+  upstream: ""                  # new firmware, no upstream to send a PR to
+  base: "Felucca 1.6 + SMK-37 layer (genkigenki/Felucca, branch smk37 = hugelton/Felucca#237, commits 1727537..smk37)"
+  family: felucca               # Vostok starts as a Felucca fork: HAL, update loader, installer, storage
+  board_layer: felucca          # the layer is already on the base, so FM-1 and SMK-37 build from one source
+  lost_on_smk:
+    - TRS MIDI IN / clock in    # PH8 is a key-matrix row on the SMK; MIDI in over USB / BLE only
+  priorities:                   # most important first
+    - the six macros (Signal, Strahlung, Umlaufbahn, Start, Schwerelosigkeit, Funkstille) one knob each, no menu
+    - the 4-track sequencer "Fünfjahresplan" (Bass, Lead, Fläche, Rhythmus) on the 16 pads
+    - the 64 factory sounds in 8 bands, picked from the pads ("Archiv")
+    - the "Rundfunk-Studio" FX chain: Leiern > Ensemble > Echo > Hall > Funkstille
+    - the bilingual (RU / DE / EN) space-age UI with its optimistic system messages
+
+delivery:
+  mode: own                     # a new firmware of the owner's own, hosted in this repository
+  pr: ""
+  fork: ""                      # not needed for an own firmware; the Felucca history stays in git (GPL-3.0)
+  package: "vostok-fm1.fwsc, vostok-smk37.fwsc, vostok-smk37-elite.fwsc, vostok-smk37-mke.fwsc"
+  usb_name: "Vostok"            # proposal; every installer's port filter must include it
+  data_family: "VOSTOK"         # own family (6 chars): Felucca's and other firmwares' data is cleared on a switch
+  copyright: "g0rst (VostockFM-1)"   # proposal: the owner's name for the headers of new SMK files
+
+models:                         # one package per model, all three from the start
+  - pro                         # SMK-37 Pro; also Starrykey 37 Play
+  - elite                       # SMK-37 Elite
+  - mke                         # MKE-P37
+
+keys:
+  middle: fm1                   # keys 5..31 (F3..G5) = the FM-1's 27 keys, velocity from the factory curves
+  outer: extend                 # synth tracks: more notes; on the Rhythmus track: drums (below)
+  outer_drums:                  # the "Maschinenhalle" kit; a black key plays its left white neighbour
+    C3: kick (Stampfer)
+    D3: snare (Schmiede)
+    E3: closed hi-hat (Funke)
+    G#5: Telemetrie-Piep
+    A5: open hi-hat (Dampf)
+    B5: clap (Applaus)
+    C6: tom (Kesselpauke)
+    # rimshot has no outer key: pads / sequencer only (proposal)
+  velocity: factory             # plus KEY VELOCITY in the settings (DYNAMIC default, SOFT, HARD, FIXED 64/100/127)
+
+pads:
+  pattern: steps                # the "Fünfjahresplan": 16 steps of the selected track
+  order: reading                # steps 1-8 top row (hardware pads 0..7), 9-16 bottom (8..15)
+  colours: custom               # the track colours, same on screen, pads and knob caps:
+                                #   Bass = Signalrot, Lead = Himmelblau, Fläche = Messing-Ocker, Rhythmus = Elfenbein
+  idle: dark
+  playhead: bright
+  picker:                       # "Archiv": the 64 factory sounds in 8 bands of 8
+    enabled: true
+    knob: none                  # K4 is a macro (Start); the picker opens from PATCH instead (proposal)
+    page: "< >"                 # page through the 8 bands (Sputnik, Vostok, Molnija, ... Plattenbau)
+    pin: PATCH                  # PATCH opens and pins the picker; PATCH again closes it
+  velocity: true
+  notes: >-
+    In the picker the top row shows the band's 8 sounds, a pad picks and previews.
+    Held NOTE REPEAT + a step pad sets that step's "Planerfüllung" (probability 25/50/75/100 %) – proposal.
+
+faders:
+  pattern: banks
+  takeover: soft
+  bank_button: FADER BANK
+  banks:                        # fader i = track i: Bass, Lead, Fläche, Rhythmus
+    A: [Lautstärke Bass, Lautstärke Lead, Lautstärke Fläche, Lautstärke Rhythmus]
+    B: [Echo-Send Bass, Echo-Send Lead, Echo-Send Fläche, Echo-Send Rhythmus]
+    C: [Hall-Send Bass, Hall-Send Lead, Hall-Send Fläche, Hall-Send Rhythmus]
+    D: [Panorama Bass, Panorama Lead, Panorama Fläche, Panorama Rhythmus]   # proposal
+  fixed: []
+  screen: bar                   # a short overlay in the track colour, with the bank name in RU / DE
+
+wheels:
+  pitch:
+    target: bend
+    range_semitones: 2          # plus BEND RANGE in the settings (1..12)
+    applies_to: selected
+  mod:
+    target: vibrato
+    detail: "5.5 Hz, up to +-1/2 semitone (the Sovietwave tape wobble), up = more"
+  calibration: auto
+
+rules:
+  no_doubles: true
+  doubles_allowed: []
+
+knobs:
+  layout: custom                # a new firmware: the macros, not the FM-1 top row
+  K1: Signal / Сигнал           # 8 curated FM recipes (algorithm + ratio set)
+  K2: Strahlung / Излучение     # modulation index of all modulators (brightness)
+  K3: Umlaufbahn / Орбита       # feedback operator (roughness)
+  K4: Start / Старт             # attack + decay of all carriers
+  K5: Schwerelosigkeit / Невесомость   # detune of two carriers + chorus depth
+  K6: Funkstille / Радиомолчание       # bit / sample-rate reduction + low-pass (lo-fi)
+  K7: Echo-Zeit / Эхо           # tape echo time, BPM-synced (sends are on fader bank B)
+  K8: Hall-Größe / Реверберация # Feder / Studio / Kathedrale and size (sends are on fader bank C)
+  step: detent
+  pages:                        # held KNOB BANK lends the second level, only while held
+    KNOB BANK: [Master-Lautstärke, Tempo, Swing, Glide, Planerfüllung, Grundton, Arp-Richtung, Arp-Oktaven]
+    FX: [Leiern, Ensemble, Echo-Rückkopplung, Echo-Farbe, Hall-Typ, Hall-Dämpfung, Funkstille-Master, Ausgang]
+
+buttons:                        # proposal: by meaning (new firmware, no FM-1 manual to keep)
+  map: custom
+  names: firmware
+  assign:
+    PATCH: ARCHIV – the sound picker on the pads
+    BT: SPEICHERN – "Dein Werk ist im Archiv des Volkes gesichert."
+    FX: RUNDFUNK-STUDIO – the FX page on K1..K8
+    SCALE: TONLEITER – scale lock (Moll, Phrygisch, Dorisch, Harm. Moll, "Hymne")
+    CHORD: MISSION – Solo / Besatzung (split) / Orchester (4 tracks) / Sendung (song chain)
+    NOTE REPEAT: SPUR – next track (Bass > Lead > Fläche > Rhythmus), LED in the track colour
+    PARA: INGENIEUR – the full 6-operator edit (for the advanced)
+    GLOBE: EINSTELLUNGEN – language RU/DE/EN, KEY VELOCITY, BEND RANGE, Unterricht (lessons)
+    ARP: SATELLIT – arpeggiator (Aufstieg, Landung, Umlaufbahn, Meteoritenschauer)
+    SEQ: FÜNFJAHRESPLAN – pads show the selected track's steps
+    SEQ PLAY: START / STOP
+    SEQ REC: AUFNAHME
+    OCTAVE-: OKTAVE -
+    OCTAVE+: OKTAVE +
+  extra:
+    KNOB BANK: the second knob level while held (see knobs.pages)
+    FADER BANK: fader bank A > B > C > D (LED lit off bank A)
+    "<": previous page / band (never tempo)
+    ">": next page / band (never tempo)
+
+screen:
+  style: redesign               # the Vostok look on the colour screen
+  colours: >-
+    background Elfenbein, accents Signalrot and Himmelblau, Messing-Ocker for values;
+    track colours as on the pads; no black-green terminal, no neon
+  rules:
+    - group screens by meaning; the knob block at the bottom of the screen
+    - the screen shows what you touch first (value next to the thing, a short hint line)
+    - same colours and same places on screen and panel (eight knobs in one row)
+    - no hidden modes; play first, few menus
+    - every line in two languages, Russian large, German (or English) small below
+    - the device speaks like a friendly Pionierleiter of 1962: proud, optimistic, never cynical
+
+pedal: sustain
+
+modes:
+  unterricht:                   # the lesson mode "Учеба", opened from GLOBE
+    keys: as played, the lesson's notes shown on the screen's keyboard strip
+    pads: the lesson's steps; the next step lights
+    faders: off
+    wheels: as above
+    exit: GLOBE
+
+open_questions:
+  - Owner OK for the button assignment (buttons.assign) and the Planerfüllung gesture on NOTE REPEAT.
+  - Fader bank D: Panorama, or a per-track Funkstille / Leiern amount?
+  - USB name "Vostok" and the copyright name for new files.
+  - Default screen language: Russian with German subtitle, or the other way round?
+  - Licence: Vostok is a Felucca fork, so the firmware stays GPL-3.0 (no paid closed build).
+  - CPU budget on the FM-1: macros + 4 voices + the full FX chain (measure in step 1).
+  - The FM-1 build ("Vostok FM-1") has 8 controls too (MASTER pot, 3 encoders, KNOB 1-4): map the six macros there 1:1?
