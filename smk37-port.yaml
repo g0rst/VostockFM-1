@@ -171,4 +171,4 @@ decisions:                      # the owner's answers, 2026-11-17
   - "language: German only, in faux-Cyrillic lettering (screen, website, manual)"
   - "licence: GPL-3.0 (Felucca fork)"
   - "font: Jost (the style matters, not the exact font)"
-  - "real Russian only in the manual, as a third translation for fun under headings and Merksätze; never on the device or the website"
+  - "manual in German, English and Russian; faux-Cyrillic headings only in the German and English editions; the Russian edition (the gag) in real Cyrillic; the device speaks German only"

@@ -24,16 +24,16 @@ Projektseite: <https://g0rst.github.io/VostockFM-1/>
 
 ## Sprache und Schrift
 
-Display, Website und Handbuch sind **nur auf Deutsch**. Überschriften, Menütitel, Klangnamen und der
+Display und Website sind **nur auf Deutsch**. Überschriften, Menütitel, Klangnamen und der
 Startbildschirm stehen in pseudo-kyrillischen Buchstaben: deutsche Wörter, in denen einige lateinische
 Großbuchstaben durch russische ersetzt sind (A→Д, B→Б, E→Ё, N→И, R→Я, U→Ц, W→Ш, X→Ж, Y→Ч).
-Werte, Zahlen und Hinweiszeilen bleiben normal lesbar. Echtes Russisch gibt es nur im Handbuch, als dritte Übersetzung und Gag unter Überschriften und Merksätzen.
+Werte, Zahlen und Hinweiszeilen bleiben normal lesbar. Das Handbuch erscheint auf Deutsch, Englisch und Russisch: Pseudo-Kyrillisch nur in der deutschen und englischen Fassung, die russische (als Gag) in echtem Kyrillisch.
 
 ```sh
 python3 tools/faux_cyr.py "Funkstille"     # FЦИKSTILLЁ
 ```
 
-Eine Tabelle für alles: Firmware-Texte, Website, Handbuch. Schrift ist
+Eine Tabelle für alles: Firmware-Texte, Website, deutsches und englisches Handbuch. Schrift ist
 [Jost](https://github.com/indestructible-type/Jost) (SIL Open Font License, Futura-artig, mit kyrillischen
 Buchstaben). Die Website lädt sie aus `docs/fonts/`, also ohne Google-Fonts-Abruf.
 
