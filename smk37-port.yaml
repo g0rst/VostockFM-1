@@ -1,8 +1,8 @@
 # smk37-port.yaml: every decision for the Vostok SMK-37 port, in one place.
 #
 # Template: genkigenki/fm1-to-smk37 (smk37-port.yaml, AGENTS.md, docs/06-mapping-patterns.md).
-# Filled from the Vostok concept ("Synthesizer der Zukunft / Синтезатор будущего").
-# STATUS: DRAFT – every value marked "proposal" waits for the owner's OK (AGENTS.md, step 0).
+# Filled from the Vostok concept ("Synthesizer der Zukunft" / SЧИTHЁSIZЁЯ DЁЯ ZЦKЦИFT).
+# STATUS: approved by the owner on 2026-11-17 (AGENTS.md, step 0); remaining items in open_questions.
 # Change this file first, then the code.
 
 firmware:
@@ -25,9 +25,10 @@ delivery:
   pr: ""
   fork: ""                      # not needed for an own firmware; the Felucca history stays in git (GPL-3.0)
   package: "vostok-fm1.fwsc, vostok-smk37.fwsc, vostok-smk37-elite.fwsc, vostok-smk37-mke.fwsc"
-  usb_name: "Vostok"            # proposal; every installer's port filter must include it
+  usb_name: "VostokSMK37"       # per board: FM-1 build "VostokFM1", SMK-37 builds "VostokSMK37";
+                                # every installer's port filter must include both
   data_family: "VOSTOK"         # own family (6 chars): Felucca's and other firmwares' data is cleared on a switch
-  copyright: "g0rst (VostockFM-1)"   # proposal: the owner's name for the headers of new SMK files
+  copyright: "g0rst"            # the headers of new files
 
 models:                         # one package per model, all three from the start
   - pro                         # SMK-37 Pro; also Starrykey 37 Play
@@ -57,13 +58,13 @@ pads:
   playhead: bright
   picker:                       # "Archiv": the 64 factory sounds in 8 bands of 8
     enabled: true
-    knob: none                  # K4 is a macro (Start); the picker opens from PATCH instead (proposal)
+    knob: none                  # K4 is a macro (Start); the picker opens from PATCH instead
     page: "< >"                 # page through the 8 bands (Sputnik, Vostok, Molnija, ... Plattenbau)
     pin: PATCH                  # PATCH opens and pins the picker; PATCH again closes it
   velocity: true
   notes: >-
     In the picker the top row shows the band's 8 sounds, a pad picks and previews.
-    Held NOTE REPEAT + a step pad sets that step's "Planerfüllung" (probability 25/50/75/100 %) – proposal.
+    Held NOTE REPEAT + a step pad sets that step's "Planerfüllung" (probability 25/50/75/100 %).
 
 faders:
   pattern: banks
@@ -73,9 +74,9 @@ faders:
     A: [Lautstärke Bass, Lautstärke Lead, Lautstärke Fläche, Lautstärke Rhythmus]
     B: [Echo-Send Bass, Echo-Send Lead, Echo-Send Fläche, Echo-Send Rhythmus]
     C: [Hall-Send Bass, Hall-Send Lead, Hall-Send Fläche, Hall-Send Rhythmus]
-    D: [Panorama Bass, Panorama Lead, Panorama Fläche, Panorama Rhythmus]   # proposal
+    D: [Panorama Bass, Panorama Lead, Panorama Fläche, Panorama Rhythmus]
   fixed: []
-  screen: bar                   # a short overlay in the track colour, with the bank name in RU / DE
+  screen: bar                   # a short overlay in the track colour, with the bank name
 
 wheels:
   pitch:
@@ -93,20 +94,20 @@ rules:
 
 knobs:
   layout: custom                # a new firmware: the macros, not the FM-1 top row
-  K1: Signal / Сигнал           # 8 curated FM recipes (algorithm + ratio set)
-  K2: Strahlung / Излучение     # modulation index of all modulators (brightness)
-  K3: Umlaufbahn / Орбита       # feedback operator (roughness)
-  K4: Start / Старт             # attack + decay of all carriers
-  K5: Schwerelosigkeit / Невесомость   # detune of two carriers + chorus depth
-  K6: Funkstille / Радиомолчание       # bit / sample-rate reduction + low-pass (lo-fi)
-  K7: Echo-Zeit / Эхо           # tape echo time, BPM-synced (sends are on fader bank B)
-  K8: Hall-Größe / Реверберация # Feder / Studio / Kathedrale and size (sends are on fader bank C)
+  K1: Signal           # 8 curated FM recipes (algorithm + ratio set)
+  K2: Strahlung     # modulation index of all modulators (brightness)
+  K3: Umlaufbahn       # feedback operator (roughness)
+  K4: Start             # attack + decay of all carriers
+  K5: Schwerelosigkeit   # detune of two carriers + chorus depth
+  K6: Funkstille       # bit / sample-rate reduction + low-pass (lo-fi)
+  K7: Echo-Zeit           # tape echo time, BPM-synced (sends are on fader bank B)
+  K8: Hall-Größe # Feder / Studio / Kathedrale and size (sends are on fader bank C)
   step: detent
   pages:                        # held KNOB BANK lends the second level, only while held
     KNOB BANK: [Master-Lautstärke, Tempo, Swing, Glide, Planerfüllung, Grundton, Arp-Richtung, Arp-Oktaven]
     FX: [Leiern, Ensemble, Echo-Rückkopplung, Echo-Farbe, Hall-Typ, Hall-Dämpfung, Funkstille-Master, Ausgang]
 
-buttons:                        # proposal: by meaning (new firmware, no FM-1 manual to keep)
+buttons:                        # by meaning (new firmware, no FM-1 manual to keep); approved
   map: custom
   names: firmware
   assign:
@@ -117,7 +118,7 @@ buttons:                        # proposal: by meaning (new firmware, no FM-1 ma
     CHORD: MISSION – Solo / Besatzung (split) / Orchester (4 tracks) / Sendung (song chain)
     NOTE REPEAT: SPUR – next track (Bass > Lead > Fläche > Rhythmus), LED in the track colour
     PARA: INGENIEUR – the full 6-operator edit (for the advanced)
-    GLOBE: EINSTELLUNGEN – language RU/DE/EN, KEY VELOCITY, BEND RANGE, Unterricht (lessons)
+    GLOBE: EINSTELLUNGEN – KEY VELOCITY, BEND RANGE, Unterricht (lessons)
     ARP: SATELLIT – arpeggiator (Aufstieg, Landung, Umlaufbahn, Meteoritenschauer)
     SEQ: FÜNFJAHRESPLAN – pads show the selected track's steps
     SEQ PLAY: START / STOP
@@ -140,13 +141,19 @@ screen:
     - the screen shows what you touch first (value next to the thing, a short hint line)
     - same colours and same places on screen and panel (eight knobs in one row)
     - no hidden modes; play first, few menus
-    - every line in two languages, Russian large, German (or English) small below
+    - >-
+      German only. Titles, menu headers, preset names and the boot screen in faux-Cyrillic lettering
+      (tools/faux_cyr.py, e.g. FЦИKSTILLЁ, ДЯCHIV); values, numbers and hint lines in plain Latin, same font
     - the device speaks like a friendly Pionierleiter of 1962: proud, optimistic, never cynical
+  font: >-
+    a geometric sans with Cyrillic coverage under the OFL, rasterised by Felucca's tools/gen_aa_font.py
+    (proposal: Jost, a free Futura-like face); the same font and the same faux-Cyrillic table on the
+    website and in the manual
 
 pedal: sustain
 
 modes:
-  unterricht:                   # the lesson mode "Учеба", opened from GLOBE
+  unterricht:                   # the lesson mode "Unterricht" (ЦИTЁЯЯICHT), opened from GLOBE
     keys: as played, the lesson's notes shown on the screen's keyboard strip
     pads: the lesson's steps; the next step lights
     faders: off
@@ -154,10 +161,13 @@ modes:
     exit: GLOBE
 
 open_questions:
-  - Owner OK for the button assignment (buttons.assign) and the Planerfüllung gesture on NOTE REPEAT.
-  - Fader bank D: Panorama, or a per-track Funkstille / Leiern amount?
-  - USB name "Vostok" and the copyright name for new files.
-  - Default screen language: Russian with German subtitle, or the other way round?
-  - Licence: Vostok is a Felucca fork, so the firmware stays GPL-3.0 (no paid closed build).
-  - CPU budget on the FM-1: macros + 4 voices + the full FX chain (measure in step 1).
-  - The FM-1 build ("Vostok FM-1") has 8 controls too (MASTER pot, 3 encoders, KNOB 1-4): map the six macros there 1:1?
+  - "Font: Jost (OFL) for screen, website and manual, or another Cyrillic-capable font the owner prefers?"
+  - "CPU budget on the FM-1: macros + 4 voices + the full FX chain (measure in step 1)."
+  - "The FM-1 build (\"Vostok FM-1\") has 8 controls too (MASTER pot, 3 encoders, KNOB 1-4): map the six macros there 1:1?"
+
+decisions:                      # the owner's answers, 2026-11-17
+  - "button assignment and Planerfüllung gesture: OK"
+  - "fader bank D: Panorama"
+  - "USB names: VostokFM1 (FM-1), VostokSMK37 (SMK-37); copyright: g0rst"
+  - "language: German only, in faux-Cyrillic lettering (screen, website, manual)"
+  - "licence: GPL-3.0 (Felucca fork)"
