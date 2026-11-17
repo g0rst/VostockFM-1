@@ -33,7 +33,7 @@ jobs:
       - name: Pillow (with raqm) for the generated fonts and icons
         run: |
           sudo apt-get update -q && sudo apt-get install -y -q libraqm0
-          pip install Pillow
+          pip install Pillow fonttools
 
       - uses: mymindstorm/setup-emsdk@v14
         with:
