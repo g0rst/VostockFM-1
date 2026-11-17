@@ -118,7 +118,7 @@ buttons:                        # by meaning (new firmware, no FM-1 manual to ke
     CHORD: MISSION – Solo / Besatzung (split) / Orchester (4 tracks) / Sendung (song chain)
     NOTE REPEAT: SPUR – next track (Bass > Lead > Fläche > Rhythmus), LED in the track colour
     PARA: INGENIEUR – the full 6-operator edit (for the advanced)
-    GLOBE: EINSTELLUNGEN – KEY VELOCITY, BEND RANGE, Unterricht (lessons)
+    GLOBE: EINSTELLUNGEN – SPRACHE (Deutsch / English), KEY VELOCITY, BEND RANGE, Unterricht (lessons)
     ARP: SATELLIT – arpeggiator (Aufstieg, Landung, Umlaufbahn, Meteoritenschauer)
     SEQ: FÜNFJAHRESPLAN – pads show the selected track's steps
     SEQ PLAY: START / STOP
@@ -142,7 +142,7 @@ screen:
     - same colours and same places on screen and panel (eight knobs in one row)
     - no hidden modes; play first, few menus
     - >-
-      German only. Titles, menu headers, preset names and the boot screen in faux-Cyrillic lettering
+      German or English (EINSTELLUNGEN > SPRACHE, German default). Titles, menu headers, preset names and the boot screen in faux-Cyrillic lettering
       (tools/faux_cyr.py, e.g. FЦИKSTILLЁ, ДЯCHIV); values, numbers and hint lines in plain Latin, same font
     - the device speaks like a friendly Pionierleiter of 1962: proud, optimistic, never cynical
   font: >-
@@ -171,4 +171,6 @@ decisions:                      # the owner's answers, 2026-11-17
   - "language: German only, in faux-Cyrillic lettering (screen, website, manual)"
   - "licence: GPL-3.0 (Felucca fork)"
   - "font: Jost (the style matters, not the exact font)"
-  - "manual in German, English and Russian; faux-Cyrillic headings only in the German and English editions; the Russian edition (the gag) in real Cyrillic; the device speaks German only"
+  - "manual in German, English and Russian; faux-Cyrillic headings only in the German and English editions; the Russian edition (the gag) in real Cyrillic"
+  - "display: German or English, both with faux-Cyrillic titles (setting SPRACHE)"
+  - "code base: Felucca 1.6.1 + SMK-37 layer merged into main with its history; emulator published on Pages"

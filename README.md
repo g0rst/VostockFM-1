@@ -10,7 +10,9 @@ Politbüro 1961 für die kosmosbegeisterte Jugend freigegeben hat. Optimistisch,
   „Fünfjahresplan“, Fader-Bänke, Lehrmodus.
 - **Vostok FM-1** – das Pionier-Modell: dieselbe Klangwelt, abgespeckt für die Jackentasche.
 
-Projektseite: <https://g0rst.github.io/VostockFM-1/>
+Projektseite: <https://g0rst.github.io/VostockFM-1/> · Emulator: <https://g0rst.github.io/VostockFM-1/emu/>
+
+Die Felucca-README liegt unverändert in [FELUCCA.md](FELUCCA.md), Bauen in [BUILDING.md](BUILDING.md), das SMK-37 in [SMK37.md](SMK37.md).
 
 ## Stand
 
@@ -18,13 +20,14 @@ Projektseite: <https://g0rst.github.io/VostockFM-1/>
 | --- | --- |
 | Konzept | fertig |
 | `smk37-port.yaml` (alle Bedienentscheidungen fürs SMK-37) | freigegeben am 17.11.2026 (offen: Rechenbudget FM-1) |
-| Basis-Code (Felucca 1.6 + SMK-37-Layer) einspielen | offen |
+| Basis-Code (Felucca 1.6.1 + SMK-37-Layer) mit Versionsgeschichte | eingespielt |
+| Browser-Emulator (GitHub Actions → Pages, `/emu/`) | eingerichtet |
 | Baseline-Build, FM-1 byte-identisch | offen |
 | Makro-Engine, Presets, Oberfläche | offen |
 
 ## Sprache und Schrift
 
-Display und Website sind **nur auf Deutsch**. Überschriften, Menütitel, Klangnamen und der
+Das Display spricht **Deutsch oder Englisch** (Einstellung SPRACHE), die Website Deutsch. Überschriften, Menütitel, Klangnamen und der
 Startbildschirm stehen in pseudo-kyrillischen Buchstaben: deutsche Wörter, in denen einige lateinische
 Großbuchstaben durch russische ersetzt sind (A→Д, B→Б, E→Ё, N→И, R→Я, U→Ц, W→Ш, X→Ж, Y→Ч).
 Werte, Zahlen und Hinweiszeilen bleiben normal lesbar. Das Handbuch erscheint auf Deutsch, Englisch und Russisch: Pseudo-Kyrillisch nur in der deutschen und englischen Fassung, die russische (als Gag) in echtem Kyrillisch.
@@ -33,7 +36,7 @@ Werte, Zahlen und Hinweiszeilen bleiben normal lesbar. Das Handbuch erscheint au
 python3 tools/faux_cyr.py "Funkstille"     # FЦИKSTILLЁ
 ```
 
-Eine Tabelle für alles: Firmware-Texte, Website, deutsches und englisches Handbuch. Schrift ist
+Eine Tabelle für alles: Firmware-Texte (Deutsch und Englisch), Website, deutsches und englisches Handbuch. Schrift ist
 [Jost](https://github.com/indestructible-type/Jost) (SIL Open Font License, Futura-artig, mit kyrillischen
 Buchstaben). Die Website lädt sie aus `docs/fonts/`, also ohne Google-Fonts-Abruf.
 
@@ -56,3 +59,14 @@ USB-Namen: `VostokFM1` (FM-1), `VostokSMK37` (SMK-37). Copyright neuer Dateien: 
 - Der FM-1-Build bleibt nach jedem Schritt prüfbar; der Weg zurück zur Werks-Firmware bleibt offen.
 
 Nicht mit M-VAVE verbunden. M-VAVE, FM-1 und SMK-37 sind Namen ihrer jeweiligen Inhaber.
+
+## Emulator lokal
+
+```sh
+git submodule update --init
+python3 -c "import sys; sys.path.insert(0,'tools'); import build; build.generate()"   # ohne JieLi-Toolchain
+sh web/emu/build.sh          # braucht Emscripten (emcc); Ergebnis in build/emu/
+```
+
+Online baut GitHub Actions den Emulator bei jedem Push auf `main` (`.github/workflows/pages.yml`).
+Dafür unter *Settings → Pages → Source* „GitHub Actions“ wählen.

@@ -1,0 +1,73 @@
+# Vostok: builds the browser emulator (web/emu, Emscripten) and publishes it with the project page.
+#   https://g0rst.github.io/VostockFM-1/      the project page (docs/)
+#   https://g0rst.github.io/VostockFM-1/emu/  the emulator: the firmware's sources compiled to WebAssembly
+# Settings > Pages > Source must be "GitHub Actions".
+name: Pages and emulator
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Pillow (with raqm) for the generated fonts and icons
+        run: |
+          sudo apt-get update -q && sudo apt-get install -y -q libraqm0
+          pip install Pillow
+
+      - uses: mymindstorm/setup-emsdk@v14
+        with:
+          version: 3.1.74
+
+      - name: Generated headers (fonts, icons, tables, samples; no JieLi toolchain needed)
+        run: python3 -c "import sys; sys.path.insert(0, 'tools'); import build; build.generate()"
+
+      - name: Emulator
+        run: EMU_PREVIEW=0 sh web/emu/build.sh
+
+      - name: Native check (the same sources, played natively)
+        run: |
+          cc -O1 -ffp-contract=off -std=gnu99 -w -DFELUCCA_VERSION=\"ci\" -Ibuild/gen -Ifirmware/src \
+             -o build/native_check web/emu/native_check.c -lm
+          build/native_check build/song.f32
+          test -s build/song.f32
+
+      - name: Site
+        run: |
+          mkdir -p _site
+          cp -r docs/. _site/
+          cp -r build/emu _site/emu
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
