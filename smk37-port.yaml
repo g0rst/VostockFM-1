@@ -147,7 +147,7 @@ screen:
     - the device speaks like a friendly Pionierleiter of 1962: proud, optimistic, never cynical
   font: >-
     a geometric sans with Cyrillic coverage under the OFL, rasterised by Felucca's tools/gen_aa_font.py
-    (proposal: Jost, a free Futura-like face); the same font and the same faux-Cyrillic table on the
+    (Jost, a free Futura-like face); the same font and the same faux-Cyrillic table on the
     website and in the manual
 
 pedal: sustain
@@ -161,7 +161,6 @@ modes:
     exit: GLOBE
 
 open_questions:
-  - "Font: Jost (OFL) for screen, website and manual, or another Cyrillic-capable font the owner prefers?"
   - "CPU budget on the FM-1: macros + 4 voices + the full FX chain (measure in step 1)."
   - "The FM-1 build (\"Vostok FM-1\") has 8 controls too (MASTER pot, 3 encoders, KNOB 1-4): map the six macros there 1:1?"
 
@@ -171,3 +170,5 @@ decisions:                      # the owner's answers, 2026-11-17
   - "USB names: VostokFM1 (FM-1), VostokSMK37 (SMK-37); copyright: g0rst"
   - "language: German only, in faux-Cyrillic lettering (screen, website, manual)"
   - "licence: GPL-3.0 (Felucca fork)"
+  - "font: Jost (the style matters, not the exact font)"
+  - "real Russian only in the manual, as a third translation for fun under headings and Merksätze; never on the device or the website"

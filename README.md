@@ -17,7 +17,7 @@ Projektseite: <https://g0rst.github.io/VostockFM-1/>
 | Schritt | Status |
 | --- | --- |
 | Konzept | fertig |
-| `smk37-port.yaml` (alle Bedienentscheidungen fürs SMK-37) | freigegeben am 17.11.2026 (offen: Schrift, Rechenbudget FM-1) |
+| `smk37-port.yaml` (alle Bedienentscheidungen fürs SMK-37) | freigegeben am 17.11.2026 (offen: Rechenbudget FM-1) |
 | Basis-Code (Felucca 1.6 + SMK-37-Layer) einspielen | offen |
 | Baseline-Build, FM-1 byte-identisch | offen |
 | Makro-Engine, Presets, Oberfläche | offen |
@@ -27,13 +27,13 @@ Projektseite: <https://g0rst.github.io/VostockFM-1/>
 Display, Website und Handbuch sind **nur auf Deutsch**. Überschriften, Menütitel, Klangnamen und der
 Startbildschirm stehen in pseudo-kyrillischen Buchstaben: deutsche Wörter, in denen einige lateinische
 Großbuchstaben durch russische ersetzt sind (A→Д, B→Б, E→Ё, N→И, R→Я, U→Ц, W→Ш, X→Ж, Y→Ч).
-Werte, Zahlen und Hinweiszeilen bleiben normal lesbar.
+Werte, Zahlen und Hinweiszeilen bleiben normal lesbar. Echtes Russisch gibt es nur im Handbuch, als dritte Übersetzung und Gag unter Überschriften und Merksätzen.
 
 ```sh
 python3 tools/faux_cyr.py "Funkstille"     # FЦИKSTILLЁ
 ```
 
-Eine Tabelle für alles: Firmware-Texte, Website, Handbuch. Schrift-Vorschlag ist
+Eine Tabelle für alles: Firmware-Texte, Website, Handbuch. Schrift ist
 [Jost](https://github.com/indestructible-type/Jost) (SIL Open Font License, Futura-artig, mit kyrillischen
 Buchstaben). Die Website lädt sie aus `docs/fonts/`, also ohne Google-Fonts-Abruf.
 
