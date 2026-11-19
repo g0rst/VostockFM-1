@@ -8,9 +8,14 @@ lang: en
 
 Dear Young Pioneer!
 
-You are holding an instrument that could not have existed only a few years ago. Our science has sent people into
-the cosmos. Now it sends music after them. The Vostok synthesizer makes sound not with strings or pipes but with
-mathematics: one oscillation bends another, and out of this come sounds of a clarity never heard before.
+You are holding the latest thing from the VEB Karl-Marx-Stadt Harmonikawerke (Karl-Marx-Stadt Harmonica Works). This
+is no electronic organ and no electric piano. It is a synthesizer, an instrument that could not have existed only a few
+years ago.
+
+Our science has sent people into the cosmos. Now it sends music after them. The Vostok synthesizer makes sound not
+with strings or pipes but with mathematics and electrical engineering: current oscillates, one oscillation bends
+another, and out of this come sounds of a clarity never heard before. This is the work of the novel **Z37 formula
+code**. Konrad Zuse would be proud.
 
 Read this manual carefully, practise hard and share your songs with your comrades. The future sounds the way you
 play it.
@@ -19,15 +24,15 @@ play it.
 
 # What is Vostok?
 
-Vostok is a firmware for two devices by M-VAVE:
+Vostok is an operating system for two devices by M-VAVE:
 
 | Device | Model | For whom |
 | --- | --- | --- |
 | **Vostok FM-1** | M-VAVE FM-1 | the Pioneer model, for your jacket pocket |
 | **Vostok SMK-37** | M-VAVE SMK-37 Pro, SMK-37 Elite, MKE-P37 | the House of Culture model, with 37 keys, pads and faders |
 
-Both devices play the same world of sound. Vostok is built on **Felucca**, the free firmware by Hügelton
-Instruments, and adds a sound engine of its own: **VOSTOK**, made for minimal wave, coldwave, post-punk, darkwave,
+Both devices play the same world of sound. Vostok is built on **Felucca**, the free operating system by
+Hügelton Instruments, and adds a sound engine of its own in Z37 formula code: **VOSTOK**, made for minimal wave, coldwave, post-punk, darkwave,
 sovietwave and doomerwave.
 
 ## State of this edition
@@ -49,17 +54,17 @@ This manual does not yet describe the parts "in preparation". Until then, the ot
 The emulator runs in the browser (Chrome or Edge): <https://g0rst.github.io/VostockFM-1/emu/>. It runs the same
 program code as the device.
 
-## Installation
+## Programming instructions
 
-1. **Backup.** Before the first installation on an SMK-37, back up the device's entire memory. The port kit explains
+1. **Backup.** Before programming an SMK-37 for the first time, back up the device's entire memory. The port kit explains
    how (`docs/02-update-and-recovery.md`). Without a backup there is no safe way back.
-2. **Build.** The firmware is made with `./build.sh` (see `BUILDING.md` in the repository). Each model gets its own
+2. **Translate.** The operating system is made with `./build.sh` (see `BUILDING.md` in the repository). Each model gets its own
    package.
-3. **Install.** Put the device into update mode and install the package with the installer.
+3. **Program.** Put the device into update mode and load the package with the programming tool.
 4. **Start.** After switching on, the device shows its start screen: "SYNTHESIZER DER ZUKUNFT" – and then "AUF
    GEHT'S!" (let's go!).
 
-> **Remember, Pioneer:** Back up first, install second. A cosmonaut never launches without a ticket home.
+> **Remember, Pioneer:** Back up first, program second. A cosmonaut never launches without a ticket home.
 
 # The Institute's lettering
 
@@ -83,7 +88,7 @@ On the display it is called **VSTK** and carries a star.
 
 ## How it sounds
 
-VOSTOK is frequency modulation with two operators: a modulator bends the oscillation of a carrier. The more it does,
+VOSTOK computes in Z37 formula code: frequency modulation with two operators. A modulator bends the oscillation of a carrier. The more it does,
 the more overtones appear and the brighter the sound. Instead of hundreds of settings there are eight ready-made
 recipes, the **signals**, and six **macros** that change several things at once.
 
@@ -158,11 +163,11 @@ KNOB 4 (LIST) filters the list by bass, lead, pad, pluck, keys, drum and FX.
 
 # Caring for the device
 
-- **The way back:** with your memory backup you can return to the factory firmware at any time.
-- **Data:** Vostok keeps its data apart. Switching from another firmware clears that firmware's data.
+- **The way back:** with your memory backup you can return to the factory operating system at any time.
+- **Data:** Vostok keeps its data apart. Switching from another operating system clears its data.
 - **Report problems:** <https://github.com/g0rst/VostockFM-1>
 
 ---
 
-Vostok is a fan and firmware project based on Felucca (GPL-3.0). It is not affiliated with M-VAVE. Install at your own
-risk.
+Vostok is a fan project based on the Felucca operating system (GPL-3.0). The VEB Karl-Marx-Stadt Harmonikawerke are
+made up, and Vostok is not affiliated with M-VAVE. Program at your own risk.

@@ -8,27 +8,31 @@ lang: de
 
 Liebe Pionierin, lieber Pionier!
 
-Du hältst ein Instrument in den Händen, das es vor wenigen Jahren noch nicht geben konnte. Unsere Wissenschaft hat den
-Menschen in den Kosmos geschickt. Nun schickt sie die Musik hinterher. Der Vostok-Synthesizer erzeugt Töne nicht mit
-Saiten oder Pfeifen, sondern mit Mathematik: Eine Schwingung verändert eine andere, und daraus entstehen Klänge von
-nie gehörter Klarheit.
+Du hältst den neuesten Schrei aus den VEB Karl-Marx-Stadt Harmonikawerken in den Händen. Dies ist keine
+Elektronikorgel und kein E-Piano. Es ist ein Synthesizer, ein Instrument, das es vor wenigen Jahren noch nicht geben
+konnte.
 
-Lies dieses Handbuch aufmerksam, übe fleißig und teile deine Lieder mit deinen Kameradinnen und Kameraden. Die Zukunft
+Unsere Wissenschaft hat den Menschen in den Kosmos geschickt. Nun schickt sie die Musik hinterher. Der
+Vostok-Synthesizer erzeugt Töne nicht mit Saiten oder Pfeifen, sondern mit Mathematik und Elektrotechnik: Strom
+schwingt, eine Schwingung verändert die andere, und daraus entstehen Klänge von nie gehörter Klarheit. Möglich macht
+das der neuartige **Z37-Formel-Code**. Konrad Zuse wäre stolz.
+
+Lies dieses Handbuch aufmerksam, übe fleißig und teile deine Lieder mit deinen Genossinnen und Genossen. Die Zukunft
 klingt so, wie du sie spielst.
 
 > **Merke dir, Pionier:** Ein Synthesizer belohnt Neugier. Drehe an jedem Regler, bevor du fragst, was er tut.
 
 # Was ist Vostok?
 
-Vostok ist eine Firmware für zwei Geräte von M-VAVE:
+Vostok ist ein Betriebssystem für zwei Geräte von M-VAVE:
 
 | Gerät | Modell | Für wen |
 | --- | --- | --- |
 | **Vostok FM-1** | M-VAVE FM-1 | das Pionier-Modell für die Jackentasche |
 | **Vostok SMK-37** | M-VAVE SMK-37 Pro, SMK-37 Elite, MKE-P37 | das Kulturhaus-Modell mit 37 Tasten, Pads und Fadern |
 
-Beide Geräte spielen dieselbe Klangwelt. Vostok baut auf **Felucca** auf, der freien Firmware von Hügelton Instruments,
-und bringt eine eigene Klangerzeugung mit: **VOSTOK**, gemacht für Minimal Wave, Coldwave, Post-Punk, Darkwave,
+Beide Geräte spielen dieselbe Klangwelt. Vostok baut auf **Felucca** auf, dem freien Betriebssystem von Hügelton Instruments,
+und bringt eine eigene Klangerzeugung im Z37-Formel-Code mit: **VOSTOK**, gemacht für Minimal Wave, Coldwave, Post-Punk, Darkwave,
 Sovietwave und Doomerwave.
 
 ## Stand dieser Ausgabe
@@ -51,17 +55,17 @@ wie in Felucca.
 Der Emulator läuft im Browser (Chrome oder Edge): <https://g0rst.github.io/VostockFM-1/emu/>. Er nutzt denselben
 Programmcode wie das Gerät.
 
-## Installation
+## Programmierungsanleitung
 
-1. **Sicherung.** Vor der ersten Installation auf einem SMK-37 sicherst du den gesamten Speicher des Geräts. Wie das
+1. **Sicherung.** Vor der ersten Programmierung eines SMK-37 sicherst du den gesamten Speicher des Geräts. Wie das
    geht, steht im Port-Kit (`docs/02-update-and-recovery.md`). Ohne Sicherung gibt es keinen sicheren Weg zurück.
-2. **Bauen.** Die Firmware entsteht mit `./build.sh` (siehe `BUILDING.md` im Repository). Für jedes Modell gibt es ein
+2. **Übersetzen.** Das Betriebssystem entsteht mit `./build.sh` (siehe `BUILDING.md` im Repository). Für jedes Modell gibt es ein
    eigenes Paket.
-3. **Aufspielen.** Das Gerät in den Update-Modus bringen und das Paket mit dem Installer aufspielen.
+3. **Programmieren.** Das Gerät in den Update-Modus bringen und das Paket mit dem Programmierwerkzeug einspielen.
 4. **Start.** Nach dem Einschalten zeigt das Gerät den Startbildschirm: „SYNTHESIZER DER ZUKUNFT“ – und dann „AUF
    GEHT'S!“
 
-> **Merke dir, Pionier:** Erst sichern, dann installieren. Ein Kosmonaut startet nie ohne Rückfahrkarte.
+> **Merke dir, Pionier:** Erst sichern, dann programmieren. Ein Kosmonaut startet nie ohne Rückfahrkarte.
 
 # Die Schrift des Instituts
 
@@ -86,7 +90,7 @@ Auf dem Display heißt sie kurz **VSTK** und trägt einen Stern.
 
 ## Wie sie klingt
 
-VOSTOK ist eine Frequenzmodulation mit zwei Operatoren: Ein Modulator verbiegt die Schwingung eines Trägers. Je
+VOSTOK rechnet im Z37-Formel-Code: eine Frequenzmodulation mit zwei Operatoren. Ein Modulator verbiegt die Schwingung eines Trägers. Je
 stärker er das tut, desto mehr Obertöne entstehen und desto heller klingt der Ton. Statt hunderter Einstellungen gibt
 es acht fertige Rezepte, die **Signale**, und sechs **Makros**, die gleich mehrere Dinge auf einmal verändern.
 
@@ -161,11 +165,11 @@ Mit KNOB 4 (LIST) filterst du die Liste nach Bass, Lead, Pad, Pluck, Keys, Drum 
 
 # Pflege des Geräts
 
-- **Rückweg:** Mit deiner Speichersicherung kehrst du jederzeit zur Werksfirmware zurück.
-- **Daten:** Vostok verwaltet seine Daten getrennt. Beim Wechsel von einer anderen Firmware werden deren Daten gelöscht.
+- **Rückweg:** Mit deiner Speichersicherung kehrst du jederzeit zum Werks-Betriebssystem zurück.
+- **Daten:** Vostok verwaltet seine Daten getrennt. Beim Wechsel von einem anderen Betriebssystem werden dessen Daten gelöscht.
 - **Fehler melden:** <https://github.com/g0rst/VostockFM-1>
 
 ---
 
-Vostok ist ein Fan- und Firmware-Projekt auf Basis von Felucca (GPL-3.0). Es ist nicht mit M-VAVE verbunden.
-Installation auf eigene Gefahr.
+Vostok ist ein Fan-Projekt auf Basis des Betriebssystems Felucca (GPL-3.0). Die VEB Karl-Marx-Stadt Harmonikawerke
+sind erfunden, und Vostok ist nicht mit M-VAVE verbunden. Programmierung auf eigene Gefahr.
