@@ -72,7 +72,7 @@ The screen texts are set in faux-Cyrillic: some capital letters appear as Cyrill
 
 | Latin | A | B | E | N | R | W | X | Y |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| on the display | Л | Б | Э | И | Я | Ш | Ж | Ч |
+| on the screen | Л | Б | Э | И | Я | Ш | Ж | Ч |
 
 So "ARCHIV" becomes ЛЯCHIV and "FUNKSTILLE" becomes FUИKSTILLЭ. Names and licences in the credits, and the help
 hints, stay Latin. The screen texts are German for now; English ones are in preparation.
@@ -81,10 +81,10 @@ hints, stay Latin. The screen texts are German for now; English ones are in prep
 
 ## Where to find it
 
-- **PRESETS:** VOSTOK is at the top of the list. KNOB 2 changes the engine.
+- **PRESETS button (pre-set sounds):** VOSTOK is at the top of the list. KNOB 2 changes the engine.
 - **Hold EDIT:** the first white key selects VOSTOK.
 
-On the display it is called **VSTK** and carries a star.
+On the screen it is called **VSTK** and carries a star.
 
 ## How it sounds
 
@@ -94,7 +94,7 @@ recipes, the **signals**, and six **macros** that change several things at once.
 
 ## The eight signals (knob SIGNL)
 
-| No. | Signal | Display | Sound | Use |
+| No. | Signal | Screen | Sound | Use |
 | --- | --- | --- | --- | --- |
 | 1 | Sputnik | SPUTN | a clean beep | leads, arpeggios |
 | 2 | Vostok | VOSTK | pulse wave | the minimal-wave bass |

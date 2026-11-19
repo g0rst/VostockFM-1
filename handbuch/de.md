@@ -61,7 +61,7 @@ Programmcode wie das Gerät.
    geht, steht im Port-Kit (`docs/02-update-and-recovery.md`). Ohne Sicherung gibt es keinen sicheren Weg zurück.
 2. **Übersetzen.** Das Betriebssystem entsteht mit `./build.sh` (siehe `BUILDING.md` im Repository). Für jedes Modell gibt es ein
    eigenes Paket.
-3. **Programmieren.** Das Gerät in den Update-Modus bringen und das Paket mit dem Programmierwerkzeug einspielen.
+3. **Programmieren.** Das Gerät in den Aktualisierungsmodus bringen und das Paket mit dem Programmierwerkzeug einspielen.
 4. **Start.** Nach dem Einschalten zeigt das Gerät den Startbildschirm: „SYNTHESIZER DER ZUKUNFT“ – und dann „AUF
    GEHT'S!“
 
@@ -74,7 +74,7 @@ Buchstaben, die ähnlich aussehen.
 
 | Lateinisch | A | B | E | N | R | W | X | Y |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| auf dem Display | Л | Б | Э | И | Я | Ш | Ж | Ч |
+| auf dem Bildschirm | Л | Б | Э | И | Я | Ш | Ж | Ч |
 
 So wird aus „ARCHIV“ ЛЯCHIV und aus „FUNKSTILLE“ FUИKSTILLЭ. Namen und Lizenzen in den Credits sowie die
 Hilfehinweise bleiben lateinisch.
@@ -83,10 +83,10 @@ Hilfehinweise bleiben lateinisch.
 
 ## So findest du sie
 
-- **PRESETS:** VOSTOK steht in der Liste ganz oben. KNOB 2 wechselt die Klangerzeugung.
+- **Taste PRESETS (Voreinstellungen):** VOSTOK steht in der Liste ganz oben. KNOB 2 wechselt die Klangerzeugung.
 - **EDIT halten:** Die erste weiße Taste wählt VOSTOK.
 
-Auf dem Display heißt sie kurz **VSTK** und trägt einen Stern.
+Auf dem Bildschirm heißt sie kurz **VSTK** und trägt einen Stern.
 
 ## Wie sie klingt
 
@@ -96,7 +96,7 @@ es acht fertige Rezepte, die **Signale**, und sechs **Makros**, die gleich mehre
 
 ## Die acht Signale (Regler SIGNL)
 
-| Nr. | Signal | Anzeige | Klang | Wofür |
+| Nr. | Signal | Bildschirm | Klang | Wofür |
 | --- | --- | --- | --- | --- |
 | 1 | Sputnik | SPUTN | reines Piepen | Leads, Arpeggios |
 | 2 | Vostok | VOSTK | Pulswelle | der Minimal-Wave-Bass |
