@@ -1,7 +1,7 @@
 # smk37-port.yaml: every decision for the Vostok SMK-37 port, in one place.
 #
 # Template: genkigenki/fm1-to-smk37 (smk37-port.yaml, AGENTS.md, docs/06-mapping-patterns.md).
-# Filled from the Vostok concept ("Synthesizer der Zukunft" / SЧИTHЁSIZЁЯ DЁЯ ZЦKЦИFT).
+# Filled from the Vostok concept ("Synthesizer der Zukunft" / SЧИTHЭSIZЭЯ DЭЯ ZUKUИFT).
 # STATUS: approved by the owner on 2026-11-17 (AGENTS.md, step 0); remaining items in open_questions.
 # Change this file first, then the code.
 
@@ -143,7 +143,8 @@ screen:
     - no hidden modes; play first, few menus
     - >-
       German or English (EINSTELLUNGEN > SPRACHE, German default). Titles, menu headers, preset names and the boot screen in faux-Cyrillic lettering
-      (tools/faux_cyr.py, e.g. FЦИKSTILLЁ, ДЯCHIV); values, numbers and hint lines in plain Latin, same font
+      (tools/faux_cyr.py, e.g. FUИKSTILLЭ, ЛЯCHIV), drawn by gfx.c on every screen; the HELP hints and the credits
+      stay Latin (only A B E N R W X Y: the letters that keep to the capitals' band)
     - the device speaks like a friendly Pionierleiter of 1962: proud, optimistic, never cynical
   font: >-
     a geometric sans with Cyrillic coverage under the OFL, rasterised by Felucca's tools/gen_aa_font.py
@@ -153,7 +154,7 @@ screen:
 pedal: sustain
 
 modes:
-  unterricht:                   # the lesson mode "Unterricht" (ЦИTЁЯЯICHT), opened from GLOBE
+  unterricht:                   # the lesson mode "Unterricht" (UИTЭЯЯICHT), opened from GLOBE
     keys: as played, the lesson's notes shown on the screen's keyboard strip
     pads: the lesson's steps; the next step lights
     faders: off

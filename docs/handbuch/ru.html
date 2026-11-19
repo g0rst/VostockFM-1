@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Руководство для юного космонавта – Vostok</title>
+<style>
+@font-face{font-family:"Jost";src:url(../fonts/Jost-400-Book.ttf) format("truetype");font-weight:400}
+@font-face{font-family:"Jost";src:url(../fonts/Jost-700-Bold.ttf) format("truetype");font-weight:700}
+:root{--ivory:#f3ead6;--paper:#fbf5e8;--red:#9e1e18;--sky:#145896;--ochre:#c08a2e;--ink:#28201a;--muted:#6d6155}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ivory);color:var(--ink);font:17px/1.6 "Jost","Futura","Century Gothic",sans-serif}
+a{color:var(--sky)}
+header{background:var(--red);color:var(--paper);padding:40px 0 34px}
+.wrap{max-width:860px;margin:0 auto;padding:0 22px}
+header h1{margin:0;font-size:clamp(1.9rem,5vw,3rem);line-height:1.1;letter-spacing:.03em}
+header p{margin:.4em 0 0;opacity:.9}
+nav.lang{margin-top:18px;font-size:.9rem}
+nav.lang a,nav.lang span{color:var(--paper);margin-right:14px}
+nav.lang span{font-weight:700;border-bottom:2px solid var(--paper)}
+main h1{font-size:1.7rem;margin:2.2em 0 .6em;padding-bottom:.25em;border-bottom:3px solid var(--ink);letter-spacing:.03em}
+main h2{font-size:1.25rem;margin:1.6em 0 .5em;color:var(--red);letter-spacing:.03em}
+table{width:100%;border-collapse:collapse;background:var(--paper);margin:1em 0;font-size:.95rem}
+th,td{border:2px solid var(--ink);padding:6px 9px;text-align:left;vertical-align:top}
+th{background:var(--ink);color:var(--paper)}
+blockquote{margin:1.4em 0;padding:14px 18px;background:var(--sky);color:var(--paper);border:3px solid var(--ink);
+  box-shadow:5px 5px 0 var(--ink)}
+blockquote p{margin:0}
+code{background:var(--paper);padding:1px 5px;border:1px solid #d8ccb0}
+hr{border:0;border-top:3px solid var(--ink);margin:2.4em 0 1em}
+footer{color:var(--muted);font-size:.85rem;padding:0 0 40px}
+@media print{body{background:#fff;font-size:11pt}header{padding:18px 0}blockquote{box-shadow:none}
+  nav.lang{display:none}main h1{page-break-before:always}main h1:first-child{page-break-before:auto}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<h1>Руководство для юного космонавта</h1>
+<p>«Восток FM-1» · «Восток SMK-37» – Синтезатор будущего</p>
+<nav class="lang"><a href="de.html">Deutsch</a> <a href="en.html">English</a> <span>Русский</span> <a href="../">Vostok</a></nav>
+</div></header>
+<main class="wrap">
+<h1>Предисловие директора института</h1>
+<p>Дорогая пионерка, дорогой пионер!</p>
+<p>В твоих руках инструмент, которого ещё несколько лет назад не могло быть. Наша наука отправила человека в космос.
+Теперь она отправляет вслед за ним музыку. Синтезатор «Восток» рождает звук не струнами и не трубами, а математикой:
+одно колебание изгибает другое, и так возникают звуки небывалой чистоты.</p>
+<p>Внимательно прочти это руководство, прилежно занимайся и делись своими песнями с товарищами. Будущее звучит так,
+как ты его сыграешь.</p>
+<blockquote>
+<p><strong>Запомни, пионер:</strong> синтезатор вознаграждает любопытство. Покрути каждую ручку, прежде чем спрашивать, что она
+делает.</p>
+</blockquote>
+<h1>Что такое «Восток»?</h1>
+<p>«Восток» – это микропрограмма для двух приборов фирмы M-VAVE:</p>
+<table>
+<thead>
+<tr>
+<th>Прибор</th>
+<th>Модель</th>
+<th>Для кого</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>«Восток FM-1»</strong></td>
+<td>M-VAVE FM-1</td>
+<td>пионерская модель для кармана куртки</td>
+</tr>
+<tr>
+<td><strong>«Восток SMK-37»</strong></td>
+<td>M-VAVE SMK-37 Pro, SMK-37 Elite, MKE-P37</td>
+<td>модель для Дома культуры: 37 клавиш, пэды и фейдеры</td>
+</tr>
+</tbody>
+</table>
+<p>Оба прибора звучат одинаково. «Восток» построен на <strong>Felucca</strong>, свободной микропрограмме Hügelton Instruments, и
+добавляет собственный звуковой движок <strong>VOSTOK</strong> – для минимал-вейва, колдвейва, пост-панка, дарквейва, советвейва и
+думервейва.</p>
+<h2>Состояние этого издания</h2>
+<table>
+<thead>
+<tr>
+<th>Часть</th>
+<th>Состояние</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Движок VOSTOK: 8 сигналов, 6 макросов, SUB, LEIER</td>
+<td>готово</td>
+</tr>
+<tr>
+<td>64 заводских звука в шести стилях</td>
+<td>готово</td>
+</tr>
+<tr>
+<td>Псевдокириллица, палитра VOSTOK, заставка</td>
+<td>готово</td>
+</tr>
+<tr>
+<td>Миссии, секвенсор «Пятилетка», радиостудия, режим учёбы</td>
+<td>в подготовке</td>
+</tr>
+<tr>
+<td>Английские надписи на экране (настройка SPRACHE)</td>
+<td>в подготовке</td>
+</tr>
+</tbody>
+</table>
+<p>То, что «в подготовке», здесь пока не описано. До тех пор остальные функции работают как в Felucca.</p>
+<h1>Ввод в эксплуатацию</h1>
+<h2>Попробовать без прибора</h2>
+<p>Эмулятор работает в браузере (Chrome или Edge): <a href="https://g0rst.github.io/VostockFM-1/emu/">https://g0rst.github.io/VostockFM-1/emu/</a>. В нём тот же
+программный код, что и в приборе.</p>
+<h2>Установка</h2>
+<ol>
+<li><strong>Резервная копия.</strong> Перед первой установкой на SMK-37 сохрани всю память прибора. Как это сделать, написано в
+   комплекте для переноса (<code>docs/02-update-and-recovery.md</code>). Без копии безопасного пути назад нет.</li>
+<li><strong>Сборка.</strong> Микропрограмма собирается командой <code>./build.sh</code> (см. <code>BUILDING.md</code> в репозитории). Для каждой модели
+   – свой пакет.</li>
+<li><strong>Прошивка.</strong> Переведи прибор в режим обновления и установи пакет установщиком.</li>
+<li><strong>Запуск.</strong> После включения прибор показывает заставку «SYNTHESIZER DER ZUKUNFT» (синтезатор будущего), а затем
+   «AUF GEHT'S!» – «Поехали!».</li>
+</ol>
+<blockquote>
+<p><strong>Запомни, пионер:</strong> сначала копия, потом установка. Космонавт не стартует без обратного билета.</p>
+</blockquote>
+<h1>Шрифт института</h1>
+<p>Надписи на экране сделаны на немецком языке, но набраны «псевдокириллицей»: некоторые латинские заглавные буквы
+заменены похожими русскими.</p>
+<table>
+<thead>
+<tr>
+<th>Латиница</th>
+<th>A</th>
+<th>B</th>
+<th>E</th>
+<th>N</th>
+<th>R</th>
+<th>W</th>
+<th>X</th>
+<th>Y</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>на экране</td>
+<td>Л</td>
+<td>Б</td>
+<td>Э</td>
+<td>И</td>
+<td>Я</td>
+<td>Ш</td>
+<td>Ж</td>
+<td>Ч</td>
+</tr>
+</tbody>
+</table>
+<p>Так «ARCHIV» (архив) превращается в ЛЯCHIV, а «FUNKSTILLE» (радиомолчание) – в FUИKSTILLЭ. Имена и лицензии в
+титрах, а также подсказки остаются латиницей.</p>
+<h1>Звуковой движок VOSTOK</h1>
+<h2>Где его найти</h2>
+<ul>
+<li><strong>PRESETS:</strong> VOSTOK стоит в самом начале списка. Ручка KNOB 2 переключает движки.</li>
+<li><strong>Удерживая EDIT:</strong> первая белая клавиша выбирает VOSTOK.</li>
+</ul>
+<p>На экране он называется <strong>VSTK</strong> и отмечен звездой.</p>
+<h2>Как он звучит</h2>
+<p>VOSTOK – это частотная модуляция двумя операторами: модулятор изгибает колебание несущей. Чем сильнее, тем больше
+обертонов и тем ярче звук. Вместо сотен настроек есть восемь готовых рецептов – <strong>сигналов</strong> – и шесть <strong>макросов</strong>,
+каждый из которых меняет сразу несколько параметров.</p>
+<h2>Восемь сигналов (ручка SIGNL)</h2>
+<table>
+<thead>
+<tr>
+<th>№</th>
+<th>Сигнал</th>
+<th>На экране</th>
+<th>Звук</th>
+<th>Для чего</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Спутник</td>
+<td>SPUTN</td>
+<td>чистый писк</td>
+<td>ведущие партии, арпеджио</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Восток</td>
+<td>VOSTK</td>
+<td>импульсная волна</td>
+<td>бас минимал-вейва</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Молния</td>
+<td>MOLNJ</td>
+<td>почти пила</td>
+<td>мелодии колдвейва</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Космодром</td>
+<td>KOSMO</td>
+<td>полый меандр</td>
+<td>бас пост-панка</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Тундра</td>
+<td>TUNDR</td>
+<td>дышащий пэд</td>
+<td>пэды дарквейва</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Полярное сияние</td>
+<td>POLAR</td>
+<td>FM-колокол</td>
+<td>мелодии советвейва</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Радиограмма</td>
+<td>FUNK</td>
+<td>шум, металл</td>
+<td>хай-хэты, малые барабаны, шумы</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Машинный зал</td>
+<td>HALLE</td>
+<td>падающий тон</td>
+<td>бочка, том, щелчок</td>
+</tr>
+</tbody>
+</table>
+<h2>Макросы</h2>
+<table>
+<thead>
+<tr>
+<th>Ручка</th>
+<th>Название</th>
+<th>Что делает</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>STRAL</td>
+<td>Излучение</td>
+<td>глубина модуляции: от тёмного до ослепительного. Огибающая и LFO, направленные на FLT, тоже двигают её.</td>
+</tr>
+<tr>
+<td>ORBIT</td>
+<td>Орбита</td>
+<td>обратная связь модулятора: от гладкого до шершавого и гудящего. Огибающая и LFO на SHP тоже двигают её.</td>
+</tr>
+<tr>
+<td>START</td>
+<td>Старт</td>
+<td>0–63 «звонко»: после удара звук темнеет (чем выше, тем медленнее). 64–127 «плавно»: звук нарастает до 1,5 секунды.</td>
+</tr>
+<tr>
+<td>SCHWB</td>
+<td>Невесомость</td>
+<td>вторая, чуть расстроенная несущая: широкие биения советвейва</td>
+</tr>
+<tr>
+<td>STILL</td>
+<td>Радиомолчание</td>
+<td>меньше битов, ниже частота дискретизации, темнее фильтр: кассета и короткие волны</td>
+</tr>
+<tr>
+<td>SUB</td>
+<td>Саб</td>
+<td>синус октавой ниже, для основы</td>
+</tr>
+<tr>
+<td>LEIER</td>
+<td>Детонация</td>
+<td>медленное плавание высоты, как у старого магнитофона</td>
+</tr>
+</tbody>
+</table>
+<p>На первой странице EDIT четыре ручки – это SIGNL, STRAL, ORBIT и START. На второй – SCHWB, STILL, SUB и LEIER.</p>
+<blockquote>
+<p><strong>Запомни, пионер:</strong> больше излучения – больше обертонов!</p>
+</blockquote>
+<h1>64 заводских звука</h1>
+<p>Первые шестнадцать звуков – это первый экипаж. Затем по восемь звуков на каждый стиль.</p>
+<table>
+<thead>
+<tr>
+<th>№</th>
+<th>Группа</th>
+<th>Звуки</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1–16</td>
+<td>Первый экипаж</td>
+<td>SPUTNIK, VOSTOK-1, LAIKA, TELEMETRIE, BAIKONUR, MOLNIJA, STAHLMARSCH, TUNDRA, WEISSE NACHT, POLARSTATION, POLARLICHT, FRIEDEN, SONNENWIND, PLATTENBAU, RADIOLA, LETZTER BUS</td>
+</tr>
+<tr>
+<td>17–24</td>
+<td>Минимал-вейв</td>
+<td>KASSETTE, BETONBASS, PIONIERLIED, SIGNALTON, MORSE, FUNKTURM, KLICKTAKT, RECHENWERK</td>
+</tr>
+<tr>
+<td>25–32</td>
+<td>Колдвейв</td>
+<td>EISKRISTALL, NORDLICHT, KALTFRONT, PERMAFROST, STAHLWERK, GLASHAUS, SCHNEESTURM, FROSTBASS</td>
+</tr>
+<tr>
+<td>33–40</td>
+<td>Пост-панк</td>
+<td>FABRIKHALLE, SAITENERSATZ, STRASSENBAHN, UNTERGRUND, TROMMLER, BETONBLOCK, NACHTSCHICHT, WALZWERK</td>
+</tr>
+<tr>
+<td>41–48</td>
+<td>Дарквейв</td>
+<td>KATHEDRALE, NEBELBANK, SCHATTENCHOR, TIEFSEE, NACHTWACHE, SCHWARZMEER, ORGELHALLE, MITTERNACHT</td>
+</tr>
+<tr>
+<td>49–56</td>
+<td>Советвейв</td>
+<td>SALJUT, MIR, SOJUS, KOSMONAUT, STERNENKARTE, TAIGAWALD, SCHWERELOS, WOSTOK-6</td>
+</tr>
+<tr>
+<td>57–64</td>
+<td>Думервейв</td>
+<td>HINTERHOF, NIESELREGEN, TRAMHALTE, KUECHENRADIO, SPAETSCHICHT, TREPPENHAUS, TONBAND, LETZTE TRAM</td>
+</tr>
+</tbody>
+</table>
+<p>Ручка KNOB 4 (LIST) фильтрует список: бас, ведущий, пэд, щипок, клавишные, ударные и эффекты.</p>
+<h1>Упражнения</h1>
+<h2>Упражнение 1. Бас минимал-вейва</h2>
+<ol>
+<li>Выбери звук <strong>VOSTOK-1</strong>.</li>
+<li>Поставь STRAL примерно на 40 %, а START на 20 %: нота станет короткой и сухой.</li>
+<li>Прибавь SUB: у баса появится основа.</li>
+<li>Сыграй фигуру восьмыми на двух нотах. Песне в стиле минимал-вейв больше не нужно.</li>
+</ol>
+<h2>Упражнение 2. Мелодия колдвейва</h2>
+<ol>
+<li>Выбери <strong>MOLNIJA</strong>.</li>
+<li>Поднимай ORBIT, пока звук не станет чуть шершавым.</li>
+<li>Добавь немного SCHWB и сыграй медленную мелодию в миноре.</li>
+</ol>
+<h2>Упражнение 3. Колокол советвейва</h2>
+<ol>
+<li>Выбери <strong>POLARLICHT</strong>.</li>
+<li>Поставь LEIER на 30 %, а SCHWB на 40 %.</li>
+<li>Сыграй несколько долгих нот и дай реверберации прозвучать.</li>
+</ol>
+<blockquote>
+<p><strong>Запомни, пионер:</strong> меньше нот – больше простора. Тишина между нотами – тоже музыка.</p>
+</blockquote>
+<h1>Уход за прибором</h1>
+<ul>
+<li><strong>Путь назад:</strong> с резервной копией памяти ты в любой момент вернёшься к заводской микропрограмме.</li>
+<li><strong>Данные:</strong> «Восток» хранит свои данные отдельно. При переходе с другой микропрограммы её данные стираются.</li>
+<li><strong>Сообщить об ошибке:</strong> <a href="https://github.com/g0rst/VostockFM-1">https://github.com/g0rst/VostockFM-1</a></li>
+</ul>
+<hr />
+<p>«Восток» – любительский проект микропрограммы на основе Felucca (GPL-3.0). Он не связан с M-VAVE. Установка – на
+свой страх и риск.</p>
+</main>
+<footer class="wrap">Vostok · GPL-3.0 · <a href="https://github.com/g0rst/VostockFM-1">github.com/g0rst/VostockFM-1</a></footer>
+</body>
+</html>

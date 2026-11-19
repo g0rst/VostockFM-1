@@ -5,9 +5,9 @@
  * sovietwave bell is one knob away instead of 155 DX7 bytes.
  *
  *   E0 SIGNL  the recipe: SPUTN VOSTK MOLNJ KOSMO TUNDR POLAR FUNK HALLE (below, VK_SIG)
- *   E1 STRAL  Strahlung: the modulation index (brightness). The track's FLT (ENV / LFO -> FLT, the matrix's CUT)
- *             moves it too, so ENV -> FLT is the classic FM brightness envelope
- *   E2 ORBIT  Umlaufbahn: the modulator's self-feedback (roughness, buzz); the track's SHP adds to it
+ *   E1 STRAL  Strahlung: the modulation index (brightness). ENV / LFO -> FLT (and the matrix's CUT) move it too,
+ *             so ENV -> FLT is the classic FM brightness envelope
+ *   E2 ORBIT  Umlaufbahn: the modulator's self-feedback (roughness, buzz); ENV / LFO -> SHP move it too
  *   E3 START  0..63 "knackig": the index falls after the attack (a pluck, faster towards 0);
  *             64..127 "flaechig": the amplitude swells in (up to ~1.5 s at 127), the index stays
  *   E4 SCHWB  Schwerelosigkeit: a second carrier, detuned up to ~20 cents (the sovietwave beat)
@@ -90,7 +90,7 @@ static void vostok_render(track_t *t, voice_t *v, int32_t *out, uint32_t n, cons
     if (leier)
         inc += (uint32_t)((int32_t)(inc >> 12) * ((sine_i((uint32_t)v->s[5]) * leier * 41) >> 15) / 127);
 
-    /* STRAL and FLT: the index, then START's fall after the attack */
+    /* STRAL and ENV / LFO -> FLT: the index, then START's fall after the attack */
     bright = clamp(p[P_E1] * 256 + m->cutoff, 0, 127 << 8);
     if (sg->kind == 1)                                         /* TUNDRA breathes: the index +-30 % */
         bright = clamp(bright + ((sine_i((uint32_t)v->s[5] >> 1) * 38) >> 8), 0, 127 << 8);
@@ -106,7 +106,7 @@ static void vostok_render(track_t *t, voice_t *v, int32_t *out, uint32_t n, cons
     kq = mulq15(kq, envk);
     k = (uint32_t)(((uint64_t)sg->kmax * (uint32_t)kq) >> 15);
 
-    /* ORBIT and SHP: the feedback, up to ~1.3 rad */
+    /* ORBIT and ENV / LFO -> SHP: the feedback, up to ~1.3 rad */
     fb = clamp(p[P_E2] + sg->fb0 + ((m->shape - (64 << 8)) >> 8), 0, 127);
     fb = fb * 214;                                              /* phase units per Q15 of the last output: */
                                                                 /* 127 * 214 * 32767 ~ 0.9 * 2^30 */

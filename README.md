@@ -23,17 +23,21 @@ Die Felucca-README liegt unverändert in [FELUCCA.md](FELUCCA.md), Bauen in [BUI
 | Basis-Code (Felucca 1.6.1 + SMK-37-Layer) mit Versionsgeschichte | eingespielt |
 | Browser-Emulator (GitHub Actions → Pages, `/emu/`) | eingerichtet |
 | Baseline-Build, FM-1 byte-identisch | offen |
-| Makro-Engine, Presets, Oberfläche | offen |
+| Klangerzeugung VOSTOK, 64 Werksklänge | fertig |
+| Oberfläche: Pseudo-Kyrillisch, Palette VOSTOK, Startbildschirm | fertig |
+| Handbuch DE / EN / RU (`handbuch/`, `tools/make_handbuch.py`) | Ausgabe 1 |
+| Missionen, Sequenzer, Rundfunk-Studio, englische Bildschirmtexte | offen |
 
 ## Sprache und Schrift
 
 Das Display spricht **Deutsch oder Englisch** (Einstellung SPRACHE), die Website Deutsch. Überschriften, Menütitel, Klangnamen und der
 Startbildschirm stehen in pseudo-kyrillischen Buchstaben: deutsche Wörter, in denen einige lateinische
-Großbuchstaben durch russische ersetzt sind (A→Д, B→Б, E→Ё, N→И, R→Я, U→Ц, W→Ш, X→Ж, Y→Ч).
-Werte, Zahlen und Hinweiszeilen bleiben normal lesbar. Das Handbuch erscheint auf Deutsch, Englisch und Russisch: Pseudo-Kyrillisch nur in der deutschen und englischen Fassung, die russische (als Gag) in echtem Kyrillisch.
+Großbuchstaben durch russische ersetzt sind (A→Л, B→Б, E→Э, N→И, R→Я, W→Ш, X→Ж, Y→Ч). Die Firmware setzt das beim
+Zeichnen um (`firmware/src/gfx.c`), die Texte im Code bleiben ASCII.
+Die HELP-Hinweise und die Credits (Namen, Lizenzen) bleiben lateinisch. Das Handbuch erscheint auf Deutsch, Englisch und Russisch: Pseudo-Kyrillisch nur in der deutschen und englischen Fassung, die russische (als Gag) in echtem Kyrillisch.
 
 ```sh
-python3 tools/faux_cyr.py "Funkstille"     # FЦИKSTILLЁ
+python3 tools/faux_cyr.py "Funkstille"     # FUИKSTILLЭ
 ```
 
 Eine Tabelle für alles: Firmware-Texte (Deutsch und Englisch), Website, deutsches und englisches Handbuch. Schrift ist

@@ -33,7 +33,7 @@ jobs:
       - name: Pillow (with raqm) for the generated fonts and icons
         run: |
           sudo apt-get update -q && sudo apt-get install -y -q libraqm0
-          pip install Pillow fonttools
+          pip install Pillow fonttools markdown
 
       - uses: mymindstorm/setup-emsdk@v14
         with:
@@ -52,8 +52,9 @@ jobs:
           build/native_check build/song.f32
           test -s build/song.f32
 
-      - name: Site
+      - name: Site (the manual rebuilt from handbuch/*.md)
         run: |
+          python3 tools/make_handbuch.py docs/handbuch
           mkdir -p _site
           cp -r docs/. _site/
           cp -r build/emu _site/emu
