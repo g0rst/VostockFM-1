@@ -7,7 +7,7 @@
 # menu headers, preset names, the boot screen and the manual's headings. Values, numbers and
 # running text stay plain Latin in the same font, so everything stays readable.
 #
-# Usage:  python3 tools/faux_cyr.py "Funkstille"  ->  FЦИKSTILLЁ
+# Usage:  python3 tools/faux_cyr.py "Funkstille"  ->  FUИKSTILLЭ
 #         from faux_cyr import fauxcyr
 
 import sys
@@ -15,19 +15,19 @@ import sys
 # One table for the whole project: firmware strings, website, manual.
 # Every target glyph is a real Cyrillic letter, so any font with Cyrillic coverage renders it.
 MAP = {
-    "A": "Д",   # De
+    "A": "Л",   # El (reads as the Greek Lambda: the classic faux-Cyrillic A)
     "B": "Б",   # Be
-    "E": "Ё",   # Yo
+    "E": "Э",   # E (the mirrored E)
     "N": "И",   # I
     "R": "Я",   # Ya
-    "U": "Ц",   # Tse
     "W": "Ш",   # Sha
     "X": "Ж",   # Zhe
     "Y": "Ч",   # Che
 }
-# Only letters of the Russian alphabet, so every font with basic Cyrillic renders them (Jost included).
-# Left Latin on purpose: the rest. Their Cyrillic look-alikes (С, Н, К, М, О, Р, Т) change nothing
-# visible, and swapping more letters hurts readability.
+# The same table as the firmware (firmware/src/gfx.c VK_LETTER). Only letters that keep to the capitals' band: Д and Ц
+# (descenders) and Ё (dots) spill out of the screen's cells, so A E use Л Э and U stays Latin. Russian letters only,
+# so every font with basic Cyrillic renders them (Jost, Inter Tight). The rest stays Latin on purpose: their
+# look-alikes (С, Н, К, М, О, Р, Т) change nothing visible, and swapping more hurts readability.
 
 
 def fauxcyr(text: str) -> str:

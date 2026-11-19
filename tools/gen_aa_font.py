@@ -37,7 +37,12 @@ import aa_raster as ar  # noqa: E402
 FONTS = Path(__file__).resolve().parents[1] / "fonts"
 LOCAL_INTER = os.path.expanduser("~/Library/Fonts/Inter.ttc")   # 4.001: 0 Regular, 10 Medium, 12 SemiBold
 EXTRAS = [0xA9, 0xB0, 0xB7, 0xC4, 0xD6, 0xDC, 0xE4, 0xF6, 0xFC, 0x2026]  # (c) deg . A: O: U: a: o: u: (Latin-1), ...
-CODE = {0x2026: 0x85}                  # characters outside Latin-1 -> their one-byte code in the firmware
+# Vostok: the Cyrillic capitals of the faux-Cyrillic lettering (tools/faux_cyr.py MAP; gfx.c VK_LETTER swaps them in
+# for A B E N R W X Y), at the one-byte codes 0x86..0x8D. Only letters that keep to the capitals' band: no descender
+# (Д Ц) and no accent (Ё), which spill out of the screens' cells (tests/ui_render.c lint)
+VK_CYR = [0x041B, 0x0411, 0x042D, 0x0418, 0x042F, 0x0428, 0x0416, 0x0427]   # Л Б Э И Я Ш Ж Ч
+EXTRAS += VK_CYR
+CODE = {0x2026: 0x85, **{c: 0x86 + i for i, c in enumerate(VK_CYR)}}   # outside Latin-1 -> a one-byte code
 PHASES, PHASES_L = 4, 2                # horizontal phases per glyph (aa_raster.raster_font): S M, L
 # faces stored Huffman-coded (--huff): M and L. S, the most drawn and the least compressible (-15 %), stays
 # 2 px per byte, so the labels draw at full speed
@@ -55,7 +60,7 @@ def preset(name):
         v = str(FONTS.parent / "assets" / "fonts" / "InterTight[wght].ttf")   # SIL OFL 1.1, Google Fonts
         return [("S", v + "@400", 12, (32, 126), EXTRAS, 0.0, PHASES),
                 ("M", v + "@500", 15, (32, 126), EXTRAS, 0.0, PHASES),
-                ("L", v + "@600", 28, (32, 32), [ord(c) for c in L_CHARS[1:]], 0.0, PHASES_L)]
+                ("L", v + "@600", 28, (32, 32), [ord(c) for c in L_CHARS[1:]] + VK_CYR, 0.0, PHASES_L)]
     if name == "standin":
         if os.path.exists(LOCAL_INTER):
             reg, med, semi = LOCAL_INTER + "#0", LOCAL_INTER + "#10", LOCAL_INTER + "#12"

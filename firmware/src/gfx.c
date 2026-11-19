@@ -520,7 +520,24 @@ static int32_t kern(const aafont_t *f, uint32_t a, uint32_t b)       /* 1/16 px 
     return 0;
 }
 
-static uint32_t fold(const aafont_t *f, uint32_t c) { return c >= 'a' && c <= 'z' && f->last < 'a' ? c - 32u : c; }
+/* Vostok: the faux-Cyrillic lettering ("Synthesizer der Zukunft"). The capitals A B E N R W X Y are drawn as
+ * Л Б Э И Я Ш Ж Ч (the fonts' extras at 0x86..0x8D, tools/gen_aa_font.py VK_CYR; the same table as
+ * tools/faux_cyr.py), so every screen reads German / English in the space-age look while the strings stay plain
+ * ASCII (the tests, the editor and the protocol see the words). FELUCCA_VOSTOK_LETTERS=0 draws them Latin */
+#ifndef FELUCCA_VOSTOK_LETTERS
+#define FELUCCA_VOSTOK_LETTERS 1
+#endif
+static const uint8_t VK_LETTER[26] = {0x86, 0x87, 0, 0, 0x88, 0, 0, 0, 0, 0, 0, 0, 0,   /* A Л, B Б, E Э */
+                                      0x89, 0, 0, 0, 0x8A, 0, 0, 0, 0, 0x8B, 0x8C, 0x8D, 0};   /* N И, R Я, W Ш, X Ж, Y Ч */
+static uint8_t vk_latin;                             /* 1: draw Latin (ABOUT / CREDITS: names, licences) */
+static uint32_t fold(const aafont_t *f, uint32_t c)
+{
+    if (c >= 'a' && c <= 'z' && f->last < 'a')
+        c -= 32u;                                    /* L has capitals only */
+    if (FELUCCA_VOSTOK_LETTERS && !vk_latin && c >= 'A' && c <= 'Z' && VK_LETTER[c - 'A'])
+        c = VK_LETTER[c - 'A'];
+    return c;
+}
 
 static int32_t text_w(const aafont_t *f, const char *s)
 {

@@ -1585,11 +1585,13 @@ static int test_display_preferences(void)
                  settings.palette == 6 && T_BG == UI_PALETTES[6].bg && ux.light && ui.menu == 1 && !song.octave &&
                  memcmp(before, host_screen, sizeof before) && !memcmp(sounds, trk, sizeof sounds));
     turn(EN_K1, 1);
-    bad += check("COLOR KNOB 1 steps on to HI-CON, NIGHT (#50: true black), MONO (1.0.2: black and white), then wraps to GREY",
+    bad += check("COLOR KNOB 1 steps on to HI-CON, NIGHT (#50: true black), MONO (1.0.2: black and white), VOSTOK, then wraps to GREY",
                  settings.palette == 7 && (turn(EN_K1, 1), settings.palette == 8u) && T_BG == 0u &&
                  str_eq(UI_PALETTES[8].name, "NIGHT") && (turn(EN_K1, 1), settings.palette == UI_BW_INDEX) &&
                  str_eq(UI_PALETTES[UI_BW_INDEX].name, "MONO") && T_BG == 0u && T_TEXT == 0xFFFFu &&
-                 (turn(EN_K1, 1), settings.palette == UI_GREY_INDEX) && str_eq(UI_PALETTES[UI_GREY_INDEX].name, "GREY"));
+                 (turn(EN_K1, 1), settings.palette == UI_VOSTOK_INDEX) && str_eq(UI_PALETTES[UI_VOSTOK_INDEX].name, "VOSTOK") &&
+                 (turn(EN_K1, 1), settings.palette == UI_GREY_INDEX) && str_eq(UI_PALETTES[UI_GREY_INDEX].name, "GREY") &&
+                 (turn(EN_K1, -1), settings.palette == UI_VOSTOK_INDEX));
     settings.lowcut = 2;
     ui.menu_sel = MI_LOWCUT;
     press(B_OCTUP);
@@ -1612,7 +1614,7 @@ static int test_display_preferences(void)
     k = ui.menu == 1 && settings.lowcut == 0u;         /* (OCT- at the first value: nothing, the menu stays) */
     press(B_HOME);
     bad += check("HOME leaves display preferences without changing musical state (OCT- no longer closes)",
-                 k && !ui.menu && settings.palette == UI_GREY_INDEX && !memcmp(sounds, trk, sizeof sounds));
+                 k && !ui.menu && settings.palette == UI_VOSTOK_INDEX && !memcmp(sounds, trk, sizeof sounds));
     return bad;
 }
 
@@ -9282,10 +9284,12 @@ static int help_fits(const char *s)
     uint32_t n = help_parse(s, kh, b, sizeof b), i;
     int32_t w = 6 * ((int32_t)n - 1);
     int ok = n >= 2u && n <= 3u;
+    vk_latin = 1;                                      /* (help_row draws the hints Latin: Vostok, gfx.c) */
     for (i = 0; i < n; i++) {
         ok &= kh[i].key < KC_COUNT && kh[i].act[0] != 0;
         w += kh_w(kh[i].key, kh[i].act);
     }
+    vk_latin = 0;
     if (!ok || w > 224) printf("  help: \"%s\" %u hints, %d px of 224\n", s, n, w);
     return ok && w <= 224;
 }

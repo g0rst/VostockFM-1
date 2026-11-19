@@ -110,6 +110,7 @@ static int32_t menu_text(const char *s, int32_t y, uint16_t col, int draw)
 static int32_t menu_document(int32_t y, int draw)
 {
     uint32_t i;
+    vk_latin = 1;                                    /* (Vostok: names, licences and addresses stay Latin, gfx.c) */
     if (draw) {
         cv_text(6, y + 2, &AF_L, "FELUCCA", T_THEME);
         cv_text(6, y + 38, &AF_S, "Multi-engine synthesizer", T_TEXT);
@@ -139,6 +140,7 @@ static int32_t menu_document(int32_t y, int draw)
     y = menu_text("NO WARRANTY", y, T_TEXT, draw);
     y = menu_text("Full notices in source:", y + 8, T_TEXT, draw);
     y = menu_text("github.com/hugelton/Felucca", y, T_MID, draw);
+    vk_latin = 0;
     return y + 4;
 }
 static int32_t menu_scroll_max(void)

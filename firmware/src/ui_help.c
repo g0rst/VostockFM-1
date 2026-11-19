@@ -103,7 +103,10 @@ static int help_row(const char *s, int32_t y)
     khint_t kh[3];
     char b[48];
     uint32_t n = help_parse(s, kh, b, sizeof b);
-    if (n)
+    if (n) {
+        vk_latin = 1;                                /* (Vostok: hints stay Latin, as plain to read as before: gfx.c) */
         cv_key_row(8, 232, y, kh, n, 7u, T_BG);
+        vk_latin = 0;
+    }
     return n != 0u;
 }
