@@ -17,8 +17,8 @@
  *
  * State per voice: ph[0] carrier, ph[1] modulator, ph[2] the detuned carrier; s[0] the index envelope (Q15),
  * s[1] the swell (Q15), s[2] the modulator's last output (feedback), s[3] STILL's low-pass, s[4] SUB's phase,
- * s[5] the wobble's phase, s[6] the drum's pitch envelope (Q15), s[7] the noise generator (TUNDRA: s[6] s[7] its DC
- * blocker).
+ * s[5] the wobble's phase, s[6] the drum's pitch envelope (Q15), s[7] the noise generator (the tonal signals, neither
+ * drum nor noise: s[6] s[7] their DC blocker).
  * No engine memory (engine_t.mem 0), no tables of its own: sine_i, noise32 and the host's pitch. */
 
 #define ENGI_VOSTOK (13u + FELUCCA_SLICE)   /* engines.c ENGINES[] (append-only: after SLICE) */
@@ -57,8 +57,8 @@ static void vostok_note_on(track_t *t, voice_t *v)
     v->s[3] = 0;
     v->s[4] = 0;
     v->s[5] = (int32_t)(v->age * 0x9E3779B9u);
-    v->s[6] = VK_SIG[(uint32_t)t->p[P_E0] & 7u].kind == 1 ? 0 : 32767;   /* the drum's pitch envelope, or */
-    v->s[7] = VK_SIG[(uint32_t)t->p[P_E0] & 7u].kind == 1 ? 0 : (int32_t)(v->age * 2654435761u) | 1;   /* TUNDRA's DC blocker */
+    v->s[6] = VK_SIG[(uint32_t)t->p[P_E0] & 7u].kind <= 1 ? 0 : 32767;   /* the drum's pitch envelope, or */
+    v->s[7] = VK_SIG[(uint32_t)t->p[P_E0] & 7u].kind <= 1 ? 0 : (int32_t)(v->age * 2654435761u) | 1;   /* the DC blocker */
 }
 
 /* START above 64: the swell, once a control tick (1378 / s), on top of the ADSR */
@@ -154,7 +154,7 @@ static void vostok_render(track_t *t, voice_t *v, int32_t *out, uint32_t n, cons
             lp += ((s - lp) * lpa) >> 15;                  /* |s - lp| <= 65534: fits 32 bits */
             s = lp;
         }
-        if (sg->kind == 1) {                                   /* TUNDRA: near 1:1, a sideband sits near 0 Hz: */
+        if (sg->kind <= 1) {                                   /* 1:1-ish FM and feedback put a sideband at 0 Hz: */
             int32_t x = s;                                     /* a DC blocker (~14 Hz) in s[6] / s[7] */
             v->s[7] += x - v->s[6] - (v->s[7] >> 9);
             v->s[6] = x;
@@ -191,7 +191,61 @@ static const preset_t VOSTOK_PRESETS[] = {
     {"SONNENWIND", {5, 60, 10, 20, 20, 0, 0, 10}, {0, 60, 30, 60}, 0, 0, FX(0, 40, 70, 60), PAT(13)},
     {"PLATTENBAU", {4, 50, 0, 100, 50, 70, 0, 50}, {50, 110, 110, 100}, 0, 0, FX(0, 60, 30, 100), PAT(5)},
     {"RADIOLA", {2, 50, 20, 40, 20, 60, 0, 40}, {5, 90, 90, 50}, 0, 1, FX(0, 30, 50, 50), PAT(4)},
-    {"LETZTER BUS", {1, 30, 0, 40, 10, 40, 80, 20}, {0, 90, 90, 70}, 0, 1, FX(0, 0, 20, 70), PAT(8)},
+    {"LETZTER BUS", {1, 30, 0, 40, 10, 40, 80, 20}, {0, 90, 90, 70}, 0, 1, FX(0, 0, 20, 70), PAT(8)},    /* (1.1: 48 more, by genre; 64 in all) */
+    /* Minimal Wave */
+    {"KASSETTE", {1, 40, 0, 20, 0, 30, 30, 10}, {0, 60, 50, 20}, 0, 1, FX(0, 0, 20, 15), PAT(2)},
+    {"BETONBASS", {3, 50, 10, 15, 0, 10, 50, 0}, {0, 50, 40, 15}, 0, 1, FX(5, 0, 0, 10), PAT(2)},
+    {"PIONIERLIED", {0, 50, 0, 25, 10, 0, 0, 10}, {0, 70, 60, 40}, 0, 1, FX(0, 10, 40, 30), PAT(4)},
+    {"SIGNALTON", {0, 100, 0, 5, 0, 0, 0, 0}, {0, 25, 0, 15}, 0, 0, FX(0, 0, 50, 20), PAT(13)},
+    {"MORSE", {1, 80, 0, 5, 0, 20, 0, 0}, {0, 20, 0, 10}, 0, 1, FX(0, 0, 60, 10), PAT(13)},
+    {"FUNKTURM", {6, 30, 20, 10, 0, 40, 0, 0}, {0, 30, 0, 20}, 0, 0, FX(0, 0, 30, 20), PAT(12)},
+    {"KLICKTAKT", {7, 5, 0, 5, 0, 40, 0, 0}, {0, 20, 0, 10}, 0, 0, FX(0, 0, 0, 10), PAT(12)},
+    {"RECHENWERK", {3, 90, 40, 10, 0, 50, 0, 0}, {0, 35, 10, 20}, 0, 1, FX(0, 0, 40, 20), PAT(13)},
+    /* Coldwave */
+    {"EISKRISTALL", {5, 90, 0, 30, 20, 0, 0, 0}, {0, 70, 20, 80}, 0, 0, FX(0, 30, 60, 90), PAT(7)},
+    {"NORDLICHT", {2, 60, 20, 90, 60, 0, 0, 20}, {40, 100, 100, 90}, 0, 0, FX(0, 70, 40, 90), PAT(5)},
+    {"KALTFRONT", {2, 90, 40, 40, 20, 0, 0, 10}, {0, 80, 90, 40}, 0, 1, FX(10, 30, 50, 50), PAT(4)},
+    {"PERMAFROST", {4, 30, 10, 110, 90, 20, 30, 10}, {70, 110, 120, 110}, 0, 0, FX(0, 60, 20, 110), PAT(5)},
+    {"STAHLWERK", {3, 80, 60, 20, 0, 0, 30, 0}, {0, 60, 60, 20}, 0, 1, FX(30, 0, 10, 20), PAT(2)},
+    {"GLASHAUS", {5, 50, 0, 50, 40, 0, 0, 0}, {0, 90, 50, 90}, 0, 0, FX(0, 50, 70, 100), PAT(7)},
+    {"SCHNEESTURM", {6, 40, 40, 100, 30, 20, 0, 0}, {60, 100, 100, 100}, 0, 0, FX(0, 40, 30, 110), PAT(5)},
+    {"FROSTBASS", {1, 60, 20, 20, 10, 0, 60, 0}, {0, 60, 50, 20}, 0, 1, FX(0, 20, 0, 20), PAT(2)},
+    /* Post-Punk */
+    {"FABRIKHALLE", {3, 70, 30, 25, 30, 0, 40, 0}, {0, 60, 70, 25}, 0, 1, FX(10, 40, 10, 30), PAT(2)},
+    {"SAITENERSATZ", {2, 90, 50, 15, 40, 0, 0, 0}, {0, 70, 60, 30}, 0, 0, FX(30, 50, 30, 40), PAT(3)},
+    {"STRASSENBAHN", {3, 60, 20, 30, 20, 10, 20, 20}, {0, 70, 80, 30}, 0, 1, FX(0, 40, 40, 30), PAT(4)},
+    {"UNTERGRUND", {1, 70, 30, 20, 0, 20, 70, 0}, {0, 50, 60, 20}, 0, 1, FX(10, 0, 20, 20), PAT(2)},
+    {"TROMMLER", {7, 25, 10, 10, 0, 10, 0, 0}, {0, 40, 0, 30}, 0, 0, FX(10, 0, 0, 30), PAT(12)},
+    {"BETONBLOCK", {6, 60, 60, 10, 0, 30, 0, 0}, {0, 35, 0, 30}, 0, 0, FX(20, 0, 0, 40), PAT(12)},
+    {"NACHTSCHICHT", {2, 70, 30, 30, 30, 10, 0, 20}, {0, 80, 80, 50}, 0, 1, FX(0, 30, 50, 50), PAT(4)},
+    {"WALZWERK", {3, 100, 80, 10, 0, 0, 40, 0}, {0, 40, 40, 20}, 0, 1, FX(40, 0, 10, 20), PAT(2)},
+    /* Darkwave */
+    {"KATHEDRALE", {4, 50, 0, 115, 70, 0, 30, 10}, {80, 110, 120, 120}, 0, 0, FX(0, 70, 30, 127), PAT(5)},
+    {"NEBELBANK", {4, 30, 10, 105, 60, 40, 0, 30}, {70, 110, 110, 110}, 0, 0, FX(0, 60, 20, 110), PAT(5)},
+    {"SCHATTENCHOR", {4, 70, 0, 100, 100, 0, 0, 20}, {60, 100, 110, 100}, 0, 0, FX(0, 90, 20, 110), PAT(5)},
+    {"TIEFSEE", {1, 20, 0, 90, 30, 30, 90, 20}, {40, 100, 110, 90}, 0, 1, FX(0, 30, 20, 90), PAT(8)},
+    {"NACHTWACHE", {5, 40, 0, 80, 40, 30, 0, 30}, {20, 110, 60, 110}, 0, 0, FX(0, 50, 60, 110), PAT(7)},
+    {"SCHWARZMEER", {2, 40, 10, 110, 70, 20, 20, 30}, {70, 110, 110, 110}, 0, 0, FX(0, 70, 30, 110), PAT(5)},
+    {"ORGELHALLE", {0, 60, 0, 90, 80, 0, 40, 10}, {30, 100, 120, 100}, 0, 0, FX(0, 60, 20, 120), PAT(5)},
+    {"MITTERNACHT", {2, 50, 20, 60, 50, 20, 0, 20}, {10, 90, 100, 70}, 0, 1, FX(0, 40, 60, 80), PAT(4)},
+    /* Sovietwave */
+    {"SALJUT", {5, 60, 0, 40, 40, 0, 0, 30}, {0, 100, 50, 100}, 0, 0, FX(0, 60, 80, 90), PAT(7)},
+    {"MIR", {4, 50, 0, 100, 70, 10, 0, 40}, {50, 110, 120, 110}, 0, 0, FX(0, 80, 40, 110), PAT(5)},
+    {"SOJUS", {1, 40, 0, 50, 60, 0, 20, 30}, {10, 90, 100, 60}, 0, 1, FX(0, 80, 50, 70), PAT(4)},
+    {"KOSMONAUT", {0, 60, 0, 40, 50, 0, 0, 40}, {0, 90, 90, 70}, 0, 1, FX(0, 70, 60, 80), PAT(4)},
+    {"STERNENKARTE", {5, 80, 0, 20, 20, 0, 0, 10}, {0, 60, 30, 70}, 0, 0, FX(0, 40, 80, 70), PAT(13)},
+    {"TAIGAWALD", {4, 40, 0, 110, 90, 20, 20, 40}, {70, 110, 120, 110}, 0, 0, FX(0, 90, 30, 120), PAT(5)},
+    {"SCHWERELOS", {5, 40, 0, 60, 100, 0, 0, 50}, {20, 100, 80, 100}, 0, 0, FX(0, 90, 70, 110), PAT(7)},
+    {"WOSTOK-6", {0, 30, 0, 60, 40, 0, 0, 30}, {10, 90, 100, 80}, 0, 1, FX(0, 60, 70, 90), PAT(4)},
+    /* Doomerwave */
+    {"HINTERHOF", {4, 40, 0, 100, 50, 80, 0, 60}, {50, 110, 110, 100}, 0, 0, FX(0, 60, 30, 100), PAT(5)},
+    {"NIESELREGEN", {6, 15, 0, 100, 20, 70, 0, 30}, {60, 100, 110, 100}, 0, 0, FX(0, 40, 20, 110), PAT(5)},
+    {"TRAMHALTE", {2, 40, 10, 40, 30, 70, 0, 50}, {5, 90, 90, 60}, 0, 1, FX(0, 40, 50, 70), PAT(4)},
+    {"KUECHENRADIO", {2, 40, 10, 40, 20, 90, 0, 50}, {5, 80, 80, 50}, 0, 1, FX(0, 20, 40, 40), PAT(4)},
+    {"SPAETSCHICHT", {1, 30, 0, 40, 20, 60, 90, 30}, {0, 90, 90, 70}, 0, 1, FX(0, 20, 20, 70), PAT(8)},
+    {"TREPPENHAUS", {5, 40, 0, 40, 30, 60, 0, 40}, {0, 100, 40, 100}, 0, 0, FX(0, 40, 60, 110), PAT(7)},
+    {"TONBAND", {4, 50, 0, 90, 60, 100, 0, 80}, {50, 110, 110, 100}, 0, 0, FX(0, 60, 30, 90), PAT(5)},
+    {"LETZTE TRAM", {1, 40, 0, 30, 10, 50, 70, 30}, {0, 90, 90, 70}, 0, 1, FX(0, 0, 30, 80), PAT(8)},
 };
 
 static const engine_t ENG_VOSTOK = {
