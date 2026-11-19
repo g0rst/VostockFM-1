@@ -75,6 +75,13 @@ code{font:.85em ui-monospace,monospace;background:rgba(255,248,226,.8);padding:1
   border-radius:4px}
 hr{border:0;height:30px;margin:2.4em 0 .6em;background:center/auto 28px no-repeat
   url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 220 28'><path d='M10 20 Q110 -6 210 20' fill='none' stroke='%232f5f9e' stroke-width='2' stroke-dasharray='5 5'/><circle cx='110' cy='8' r='6' fill='%23c3362b'/><path d='M104 4 L92 0 M116 4 L128 0 M106 13 L96 20 M114 13 L124 20' stroke='%233a2a1c' stroke-width='1.6'/></svg>")}
+audio{width:100%;min-width:180px;height:36px}
+.screens{display:flex;flex-wrap:wrap;gap:22px;margin:1em 0}
+figure.screen{margin:0;padding:10px 10px 6px;background:#f8eccb;border:2px solid var(--ink);border-radius:8px;
+  box-shadow:4px 4px 0 rgba(47,95,158,.35);transform:rotate(-1.2deg)}
+figure.screen:nth-child(2){transform:rotate(1deg)}
+figure.screen img{display:block;width:220px;height:auto;image-rendering:pixelated;border:1px solid rgba(58,42,28,.4)}
+figure.screen figcaption{font:15px "Pangolin",cursive;max-width:220px;margin-top:4px}
 .colophon{font:15px/1.45 "PT Serif",serif;color:var(--muted);padding:6px 56px 40px}
 .colophon .stamp{display:inline-block;margin-top:10px;font:16px "Neucha",cursive;color:var(--red);border:2px solid var(--red);
   padding:2px 10px;border-radius:6px;transform:rotate(-4deg);opacity:.8}
@@ -97,13 +104,13 @@ hr{border:0;height:30px;margin:2.4em 0 .6em;background:center/auto 28px no-repea
 </g><g fill="#2f5f9e"><circle cx="12" cy="40" r="3"/><circle cx="104" cy="22" r="2.5"/><circle cx="110" cy="96" r="3"/>
 <circle cx="8" cy="110" r="2"/></g></svg>
 <div class="maker">VEB Karl-Marx-Stadt Harmonikawerke</div>
-<h1>MЛИUЛL FOЯ ЧOUИG COSMOИЛUTS</h1>
+<h1>MAИUAL FOЯ ЧOUИG COSMOИAUTS</h1>
 <p class="sub">Vostok FM-1 · Vostok SMK-37 – Synthesizer of the Future</p>
 <div class="badges"><span class="badge">For young pioneers aged 8 and up</span><span class="badge price">Edition 1 · Price 85 pfennigs</span></div>
 <nav class="lang"><a href="de.html">Deutsch</a> <span>English</span> <a href="ru.html">Русский</a> <a href="../">Vostok</a></nav>
 </header>
 <main class="wrap">
-<h1>FOЯЭШOЯD БЧ THЭ DIЯЭCTOЯ OF THЭ IИSTITUTЭ</h1>
+<h1>FOЯEШOЯD BЧ THE DIЯECTOЯ OF THE IИSTITUTE</h1>
 <p>Dear Young Pioneer!</p>
 <p>You are holding the latest thing from the VEB Karl-Marx-Stadt Harmonikawerke (Karl-Marx-Stadt Harmonica Works). This
 is no electronic organ and no electric piano. It is a synthesizer, an instrument that could not have existed only a few
@@ -115,9 +122,9 @@ code</strong>. Konrad Zuse would be proud.</p>
 <p>Read this manual carefully, practise hard and share your songs with your comrades. The future sounds the way you
 play it.</p>
 <blockquote>
-<p><strong>ЯЭMЭMБЭЯ, PIOИЭЭЯ:</strong> A synthesizer rewards curiosity. Turn every knob before you ask what it does.</p>
+<p><strong>ЯEMEMBEЯ, PIOИEEЯ:</strong> A synthesizer rewards curiosity. Turn every knob before you ask what it does.</p>
 </blockquote>
-<h1>ШHЛT IS VOSTOK?</h1>
+<h1>ШHAT IS VOSTOK?</h1>
 <p>Vostok is an operating system for two devices by M-VAVE:</p>
 <table>
 <thead>
@@ -143,7 +150,7 @@ play it.</p>
 <p>Both devices play the same world of sound. Vostok is built on <strong>Felucca</strong>, the free operating system by
 Hügelton Instruments, and adds a sound engine of its own in Z37 formula code: <strong>VOSTOK</strong>, made for minimal wave, coldwave, post-punk, darkwave,
 sovietwave and doomerwave.</p>
-<h2>STЛTЭ OF THIS ЭDITIOИ</h2>
+<h2>STATE OF THIS EDITIOИ</h2>
 <table>
 <thead>
 <tr>
@@ -175,11 +182,11 @@ sovietwave and doomerwave.</p>
 </tbody>
 </table>
 <p>This manual does not yet describe the parts "in preparation". Until then, the other functions work as in Felucca.</p>
-<h1>GЭTTIИG STЛЯTЭD</h1>
-<h2>TЯЧ IT ШITHOUT Л DЭVICЭ</h2>
+<h1>GETTIИG STAЯTED</h1>
+<h2>TЯЧ IT ШITHOUT A DEVICE</h2>
 <p>The emulator runs in the browser (Chrome or Edge): <a href="https://g0rst.github.io/VostockFM-1/emu/">https://g0rst.github.io/VostockFM-1/emu/</a>. It runs the same
 program code as the device.</p>
-<h2>PЯOGЯЛMMIИG IИSTЯUCTIOИS</h2>
+<h2>PЯOGЯAMMIИG IИSTЯUCTIOИS</h2>
 <ol>
 <li><strong>Backup.</strong> Before programming an SMK-37 for the first time, back up the device's entire memory. The port kit explains
    how (<code>docs/02-update-and-recovery.md</code>). Without a backup there is no safe way back.</li>
@@ -190,17 +197,15 @@ program code as the device.</p>
    GEHT'S!" (let's go!).</li>
 </ol>
 <blockquote>
-<p><strong>ЯЭMЭMБЭЯ, PIOИЭЭЯ:</strong> Back up first, program second. A cosmonaut never launches without a ticket home.</p>
+<p><strong>ЯEMEMBEЯ, PIOИEEЯ:</strong> Back up first, program second. A cosmonaut never launches without a ticket home.</p>
 </blockquote>
-<h1>THЭ IИSTITUTЭ'S LЭTTЭЯIИG</h1>
-<p>The screen texts are set in faux-Cyrillic: some capital letters appear as Cyrillic letters that look alike.</p>
+<h1>THE IИSTITUTE'S LETTEЯIИG</h1>
+<p>The screen texts are set in faux-Cyrillic: five capital letters appear as Cyrillic letters that look alike. All the
+others stay as they are, so everything is easy to read.</p>
 <table>
 <thead>
 <tr>
 <th>Latin</th>
-<th>A</th>
-<th>B</th>
-<th>E</th>
 <th>N</th>
 <th>R</th>
 <th>W</th>
@@ -211,9 +216,6 @@ program code as the device.</p>
 <tbody>
 <tr>
 <td>on the screen</td>
-<td>Л</td>
-<td>Б</td>
-<td>Э</td>
 <td>И</td>
 <td>Я</td>
 <td>Ш</td>
@@ -222,10 +224,10 @@ program code as the device.</p>
 </tr>
 </tbody>
 </table>
-<p>So "ARCHIV" becomes ЛЯCHIV and "FUNKSTILLE" becomes FUИKSTILLЭ. Names and licences in the credits, and the help
+<p>So "ARCHIV" becomes AЯCHIV and "FUNKSTILLE" becomes FUИKSTILLE. Names and licences in the credits, and the help
 hints, stay Latin. The screen texts are German for now; English ones are in preparation.</p>
-<h1>THЭ VOSTOK ЭИGIИЭ</h1>
-<h2>ШHЭЯЭ TO FIИD IT</h2>
+<h1>THE VOSTOK EИGIИE</h1>
+<h2>ШHEЯE TO FIИD IT</h2>
 <ul>
 <li><strong>PRESETS button (pre-set sounds):</strong> VOSTOK is at the top of the list. KNOB 2 changes the engine.</li>
 <li><strong>Hold EDIT:</strong> the first white key selects VOSTOK.</li>
@@ -235,7 +237,7 @@ hints, stay Latin. The screen texts are German for now; English ones are in prep
 <p>VOSTOK computes in Z37 formula code: frequency modulation with two operators. A modulator bends the oscillation of a carrier. The more it does,
 the more overtones appear and the brighter the sound. Instead of hundreds of settings there are eight ready-made
 recipes, the <strong>signals</strong>, and six <strong>macros</strong> that change several things at once.</p>
-<h2>THЭ ЭIGHT SIGИЛLS (KИOБ SIGИL)</h2>
+<h2>THE EIGHT SIGИALS (KИOB SIGИL)</h2>
 <table>
 <thead>
 <tr>
@@ -305,7 +307,7 @@ recipes, the <strong>signals</strong>, and six <strong>macros</strong> that chan
 </tr>
 </tbody>
 </table>
-<h2>THЭ MЛCЯOS</h2>
+<h2>THE MACЯOS</h2>
 <table>
 <thead>
 <tr>
@@ -355,9 +357,9 @@ recipes, the <strong>signals</strong>, and six <strong>macros</strong> that chan
 <p>The first EDIT page puts SIGNL, STRAL, ORBIT and START on the four knobs. The second page holds SCHWB, STILL, SUB and
 LEIER.</p>
 <blockquote>
-<p><strong>ЯЭMЭMБЭЯ, PIOИЭЭЯ:</strong> More radiation, more overtones!</p>
+<p><strong>ЯEMEMBEЯ, PIOИEEЯ:</strong> More radiation, more overtones!</p>
 </blockquote>
-<h1>THЭ 64 FЛCTOЯЧ SOUИDS</h1>
+<h1>THE 64 FACTOЯЧ SOUИDS</h1>
 <p>The first sixteen sounds are the founding crew. Then come eight sounds for each style.</p>
 <table>
 <thead>
@@ -406,30 +408,83 @@ LEIER.</p>
 </tbody>
 </table>
 <p>KNOB 4 (LIST) filters the list by bass, lead, pad, pluck, keys, drum and FX.</p>
-<h1>ЭЖЭЯCISЭS</h1>
-<h2>ЭЖЭЯCISЭ 1: THЭ MIИIMЛL-ШЛVЭ БЛSS</h2>
+<h1>LISTEИIИG EЖAMPLES</h1>
+<p>Six little pieces played by the device's real sound code: only the VOSTOK engine and its factory sounds, nothing changed but the volume. Listen closely, then play them yourself!</p>
+<table>
+<thead>
+<tr>
+<th>Style</th>
+<th>Listen</th>
+<th>Sounds</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Minimal wave</td>
+<td><audio controls preload="none" src="../hoerproben/minimal-wave.mp3"></audio></td>
+<td>VOSTOK-1, SIGNALTON, KLICKTAKT, FUNKTURM</td>
+</tr>
+<tr>
+<td>Coldwave</td>
+<td><audio controls preload="none" src="../hoerproben/coldwave.mp3"></audio></td>
+<td>FROSTBASS, KALTFRONT, NORDLICHT, STAHLMARSCH</td>
+</tr>
+<tr>
+<td>Post-punk</td>
+<td><audio controls preload="none" src="../hoerproben/post-punk.mp3"></audio></td>
+<td>FABRIKHALLE, SAITENERSATZ, TROMMLER, FUNKTURM</td>
+</tr>
+<tr>
+<td>Darkwave</td>
+<td><audio controls preload="none" src="../hoerproben/darkwave.mp3"></audio></td>
+<td>KATHEDRALE, TIEFSEE, NACHTWACHE, STAHLMARSCH</td>
+</tr>
+<tr>
+<td>Sovietwave</td>
+<td><audio controls preload="none" src="../hoerproben/sovietwave.mp3"></audio></td>
+<td>MIR, SALJUT, SOJUS, KLICKTAKT</td>
+</tr>
+<tr>
+<td>Doomerwave</td>
+<td><audio controls preload="none" src="../hoerproben/doomerwave.mp3"></audio></td>
+<td>PLATTENBAU, SPAETSCHICHT, KUECHENRADIO, STAHLMARSCH</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>ЯEMEMBEЯ, PIOИEEЯ:</strong> Playing along is allowed. Copying too. That is how musicians learn.</p>
+</blockquote>
+<h2>ШHAT IT LOOKS LIKE</h2>
+<div class="screens">
+<figure class="screen"><img src="../bilder/splash.png" alt="The start screen" width="240" height="240"><figcaption>The start screen</figcaption></figure>
+<figure class="screen"><img src="../bilder/edit_vostok.png" alt="VOSTOK, page 1: SIGNL, STRAL, ORBIT, START" width="240" height="240"><figcaption>VOSTOK, page 1: SIGNL, STRAL, ORBIT, START</figcaption></figure>
+<figure class="screen"><img src="../bilder/edit_vostok_2.png" alt="Page 2: SCHWB, STILL, SUB, LEIER" width="240" height="240"><figcaption>Page 2: SCHWB, STILL, SUB, LEIER</figcaption></figure>
+</div>
+
+<h1>EЖEЯCISES</h1>
+<h2>EЖEЯCISE 1: THE MIИIMAL-ШAVE BASS</h2>
 <ol>
 <li>Choose the sound <strong>VOSTOK-1</strong>.</li>
 <li>Set STRAL to about 40 % and START to 20 %: the note becomes short and dry.</li>
 <li>Turn up SUB: the bass gets its foundation.</li>
 <li>Play an eighth-note figure on two notes. A minimal-wave song needs no more.</li>
 </ol>
-<h2>ЭЖЭЯCISЭ 2: THЭ COLDШЛVЭ MЭLODЧ</h2>
+<h2>EЖEЯCISE 2: THE COLDШAVE MELODЧ</h2>
 <ol>
 <li>Choose <strong>MOLNIJA</strong>.</li>
 <li>Raise ORBIT until the sound turns slightly rough.</li>
 <li>Add some SCHWB and play a slow melody in a minor key.</li>
 </ol>
-<h2>ЭЖЭЯCISЭ 3: THЭ SOVIЭTШЛVЭ БЭLL</h2>
+<h2>EЖEЯCISE 3: THE SOVIETШAVE BELL</h2>
 <ol>
 <li>Choose <strong>POLARLICHT</strong>.</li>
 <li>Set LEIER to 30 % and SCHWB to 40 %.</li>
 <li>Play a few long notes and let the reverb ring.</li>
 </ol>
 <blockquote>
-<p><strong>ЯЭMЭMБЭЯ, PIOИЭЭЯ:</strong> Fewer notes, more space. The silence between the notes is part of the music.</p>
+<p><strong>ЯEMEMBEЯ, PIOИEEЯ:</strong> Fewer notes, more space. The silence between the notes is part of the music.</p>
 </blockquote>
-<h1>CЛЯIИG FOЯ THЭ DЭVICЭ</h1>
+<h1>CAЯIИG FOЯ THE DEVICE</h1>
 <ul>
 <li><strong>The way back:</strong> with your memory backup you can return to the factory operating system at any time.</li>
 <li><strong>Data:</strong> Vostok keeps its data apart. Switching from another operating system clears its data.</li>

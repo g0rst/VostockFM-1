@@ -32,12 +32,12 @@ Die Felucca-README liegt unverändert in [FELUCCA.md](FELUCCA.md), Bauen in [BUI
 
 Das Display spricht **Deutsch oder Englisch** (Einstellung SPRACHE), die Website Deutsch. Überschriften, Menütitel, Klangnamen und der
 Startbildschirm stehen in pseudo-kyrillischen Buchstaben: deutsche Wörter, in denen einige lateinische
-Großbuchstaben durch russische ersetzt sind (A→Л, B→Б, E→Э, N→И, R→Я, W→Ш, X→Ж, Y→Ч). Die Firmware setzt das beim
+Großbuchstaben durch russische ersetzt sind (N→И, R→Я, W→Ш, X→Ж, Y→Ч; mehr Buchstaben machten die Wörter unleserlich). Die Firmware setzt das beim
 Zeichnen um (`firmware/src/gfx.c`), die Texte im Code bleiben ASCII.
 Die HELP-Hinweise und die Credits (Namen, Lizenzen) bleiben lateinisch. Das Handbuch erscheint auf Deutsch, Englisch und Russisch: Pseudo-Kyrillisch nur in der deutschen und englischen Fassung, die russische (als Gag) in echtem Kyrillisch.
 
 ```sh
-python3 tools/faux_cyr.py "Funkstille"     # FUИKSTILLЭ
+python3 tools/faux_cyr.py "Funkstille"     # FUИKSTILLE
 ```
 
 Eine Tabelle für alles: Firmware-Texte (Deutsch und Englisch), Website, deutsches und englisches Handbuch. Schrift ist

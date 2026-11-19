@@ -68,14 +68,14 @@ lang: ru
 
 # Шрифт института
 
-Надписи на экране сделаны на немецком языке, но набраны «псевдокириллицей»: некоторые латинские заглавные буквы
-заменены похожими русскими.
+Надписи на экране сделаны на немецком языке, но набраны «псевдокириллицей»: пять латинских заглавных букв
+заменены похожими русскими. Остальные остаются как есть, чтобы всё легко читалось.
 
-| Латиница | A | B | E | N | R | W | X | Y |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| на экране | Л | Б | Э | И | Я | Ш | Ж | Ч |
+| Латиница | N | R | W | X | Y |
+| --- | --- | --- | --- | --- | --- |
+| на экране | И | Я | Ш | Ж | Ч |
 
-Так «ARCHIV» (архив) превращается в ЛЯCHIV, а «FUNKSTILLE» (радиомолчание) – в FUИKSTILLЭ. Имена и лицензии в
+Так «ARCHIV» (архив) превращается в AЯCHIV, а «FUNKSTILLE» (радиомолчание) – в FUИKSTILLE. Имена и лицензии в
 титрах, а также подсказки остаются латиницей.
 
 # Звуковой движок VOSTOK
@@ -137,6 +137,29 @@ VOSTOK считает формульным кодом Z37: это частотн
 | 57–64 | Думервейв | HINTERHOF, NIESELREGEN, TRAMHALTE, KUECHENRADIO, SPAETSCHICHT, TREPPENHAUS, TONBAND, LETZTE TRAM |
 
 Ручка KNOB 4 (LIST) фильтрует список: бас, ведущий, пэд, щипок, клавишные, ударные и эффекты.
+
+# Звуковые примеры
+
+Шесть маленьких пьес, сыгранных настоящим звуковым кодом прибора: только движок VOSTOK и его заводские звуки, изменена лишь громкость. Послушай внимательно, а потом сыграй сам!
+
+| Стиль | Слушать | Звуки |
+| --- | --- | --- |
+| Минимал-вейв | <audio controls preload="none" src="../hoerproben/minimal-wave.mp3"></audio> | VOSTOK-1, SIGNALTON, KLICKTAKT, FUNKTURM |
+| Колдвейв | <audio controls preload="none" src="../hoerproben/coldwave.mp3"></audio> | FROSTBASS, KALTFRONT, NORDLICHT, STAHLMARSCH |
+| Пост-панк | <audio controls preload="none" src="../hoerproben/post-punk.mp3"></audio> | FABRIKHALLE, SAITENERSATZ, TROMMLER, FUNKTURM |
+| Дарквейв | <audio controls preload="none" src="../hoerproben/darkwave.mp3"></audio> | KATHEDRALE, TIEFSEE, NACHTWACHE, STAHLMARSCH |
+| Советвейв | <audio controls preload="none" src="../hoerproben/sovietwave.mp3"></audio> | MIR, SALJUT, SOJUS, KLICKTAKT |
+| Думервейв | <audio controls preload="none" src="../hoerproben/doomerwave.mp3"></audio> | PLATTENBAU, SPAETSCHICHT, KUECHENRADIO, STAHLMARSCH |
+
+> **Запомни, пионер:** Подбирать на слух можно. Списывать тоже. Так учатся музыканты.
+
+## Как это выглядит
+
+<div class="screens">
+<figure class="screen"><img src="../bilder/splash.png" alt="Заставка" width="240" height="240"><figcaption>Заставка</figcaption></figure>
+<figure class="screen"><img src="../bilder/edit_vostok.png" alt="VOSTOK, страница 1: SIGNL, STRAL, ORBIT, START" width="240" height="240"><figcaption>VOSTOK, страница 1: SIGNL, STRAL, ORBIT, START</figcaption></figure>
+<figure class="screen"><img src="../bilder/edit_vostok_2.png" alt="Страница 2: SCHWB, STILL, SUB, LEIER" width="240" height="240"><figcaption>Страница 2: SCHWB, STILL, SUB, LEIER</figcaption></figure>
+</div>
 
 # Упражнения
 

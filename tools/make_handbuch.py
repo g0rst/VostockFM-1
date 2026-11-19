@@ -101,6 +101,13 @@ code{font:.85em ui-monospace,monospace;background:rgba(255,248,226,.8);padding:1
   border-radius:4px}
 hr{border:0;height:30px;margin:2.4em 0 .6em;background:center/auto 28px no-repeat
   url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 220 28'><path d='M10 20 Q110 -6 210 20' fill='none' stroke='%232f5f9e' stroke-width='2' stroke-dasharray='5 5'/><circle cx='110' cy='8' r='6' fill='%23c3362b'/><path d='M104 4 L92 0 M116 4 L128 0 M106 13 L96 20 M114 13 L124 20' stroke='%233a2a1c' stroke-width='1.6'/></svg>")}
+audio{width:100%;min-width:180px;height:36px}
+.screens{display:flex;flex-wrap:wrap;gap:22px;margin:1em 0}
+figure.screen{margin:0;padding:10px 10px 6px;background:#f8eccb;border:2px solid var(--ink);border-radius:8px;
+  box-shadow:4px 4px 0 rgba(47,95,158,.35);transform:rotate(-1.2deg)}
+figure.screen:nth-child(2){transform:rotate(1deg)}
+figure.screen img{display:block;width:220px;height:auto;image-rendering:pixelated;border:1px solid rgba(58,42,28,.4)}
+figure.screen figcaption{font:15px "Pangolin",cursive;max-width:220px;margin-top:4px}
 .colophon{font:15px/1.45 "PT Serif",serif;color:var(--muted);padding:6px 56px 40px}
 .colophon .stamp{display:inline-block;margin-top:10px;font:16px "Neucha",cursive;color:var(--red);border:2px solid var(--red);
   padding:2px 10px;border-radius:6px;transform:rotate(-4deg);opacity:.8}

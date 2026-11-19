@@ -42,6 +42,13 @@
   table{width:100%;border-collapse:collapse;background:var(--paper)}
   td,th{border:2px solid var(--ink);padding:8px 10px;text-align:left}
   th{background:var(--ink);color:var(--paper)}
+  .small{font-size:.85rem;color:var(--muted);margin:.4em 0 0}
+  audio{width:100%;margin-top:6px}
+  .card h3{font-size:1.1rem}
+  .shots{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));margin-top:26px}
+  .shots figure{margin:0;background:var(--paper);border:3px solid var(--ink);padding:10px;box-shadow:6px 6px 0 var(--ink)}
+  .shots img{width:100%;height:auto;image-rendering:pixelated;display:block}
+  .shots figcaption{font-size:.85rem;margin-top:6px}
   footer{padding:32px 0 48px;color:var(--muted);font-size:.85rem}
   @media (max-width:640px){ol.signals{columns:1} .knobs{grid-template-columns:repeat(4,minmax(0,1fr))} svg.rocket{display:none}}
 </style>
@@ -49,9 +56,9 @@
 <body>
 <header>
   <div class="wrap">
-    <span class="badge">ИOЯM 1961 · PЯOJЭKT</span>
+    <span class="badge">ИOЯM 1961 · PЯOJEKT</span>
     <h1>VOSTOK<small>FM-1 · SMK-37</small></h1>
-    <p class="ru">SЧИTHЭSIZЭЯ DЭЯ ZUKUИFT</p>
+    <p class="ru">SЧИTHESIZEЯ DEЯ ZUKUИFT</p>
     <p class="de">Eine Firmware für den M-VAVE FM-1 und das M-VAVE SMK-37.</p>
   </div>
   <svg class="rocket" viewBox="0 0 60 140" aria-hidden="true">
@@ -65,7 +72,7 @@
 <main>
 <section>
   <div class="wrap">
-    <h2 class="ru">DЭЯ ЛUFTЯЛG</h2>
+    <h2 class="ru">DEЯ AUFTЯAG</h2>
     <p>Am Tag von Gagarins Flug beschließt das Präsidium, ein elektronisches Musikinstrument für die Jugend freizugeben.
       Es soll zeigen, was Wissenschaft und Technik vermögen – optimistisch, belehrend, stolz. Die Musik, die darauf entsteht,
       ist kalt und minimal: <strong>Minimal Wave, Coldwave, Post-Punk, Darkwave, Sovietwave, Doomerwave</strong>.
@@ -76,12 +83,12 @@
 
 <section>
   <div class="wrap">
-    <h2 class="ru">ZШЭI GЭЯÄTЭ, ЭIИЭ FIЯMШЛЯЭ</h2>
+    <h2 class="ru">ZШEI GEЯÄTE, EIИE FIЯMШAЯE</h2>
     <div class="grid">
-      <div class="card"><span class="tag">FÜЯ DЛS KULTUЯHЛUS</span><h3>VOSTOK SMK-37</h3>
+      <div class="card"><span class="tag">FÜЯ DAS KULTUЯHAUS</span><h3>VOSTOK SMK-37</h3>
         <p>Das Kulturhaus-Modell. Vier Spuren – Bass, Lead, Fläche, Rhythmus –, die 16 Pads als Sequenzer „Fünfjahresplan“,
           Fader-Bänke für Lautstärke, Effekte und Panorama, Lehrmodus „Unterricht“.</p></div>
-      <div class="card"><span class="tag">FÜЯ JЭDЭИ PIOИIЭЯ</span><h3>VOSTOK FM-1</h3>
+      <div class="card"><span class="tag">FÜЯ JEDEИ PIOИIEЯ</span><h3>VOSTOK FM-1</h3>
         <p>Das Pionier-Modell für die Jackentasche. Dieselben acht Signale und Makros, Melodie und Rhythmus, Akku als
           „Treibstoff“, BLE-„Doppelflug“ mit einem zweiten FM-1.</p></div>
     </div>
@@ -90,51 +97,77 @@
 
 <section>
   <div class="wrap">
-    <h2 class="ru">DIЭ ЛCHT SIGИЛLЭ</h2>
+    <h2 class="ru">DIE ACHT SIGИALE</h2>
     <ol class="signals">
       <li><strong>SPUTИIK</strong> – reines Piepen, Lead und Arpeggio</li>
       <li><strong>VOSTOK</strong> – Pulswelle, der Minimal-Wave-Bass</li>
-      <li><strong>MOLИIJЛ</strong> – sägezahnartig, Coldwave-Leads</li>
+      <li><strong>MOLИIJA</strong> – sägezahnartig, Coldwave-Leads</li>
       <li><strong>KOSMODЯOM</strong> – hohles Rechteck, Post-Punk-Bass</li>
-      <li><strong>TUИDЯЛ</strong> – atmendes Pad, Darkwave-Flächen</li>
-      <li><strong>POLЛЯLICHT</strong> – FM-Glocken, Sovietwave</li>
+      <li><strong>TUИDЯA</strong> – atmendes Pad, Darkwave-Flächen</li>
+      <li><strong>POLAЯLICHT</strong> – FM-Glocken, Sovietwave</li>
       <li><strong>FUИKSPЯUCH</strong> – Rauschen, Hi-Hats, Snares</li>
-      <li><strong>MЛSCHIИЭИHЛLLЭ</strong> – Kick, Tom, Klick</li>
+      <li><strong>MASCHIИEИHALLE</strong> – Kick, Tom, Klick</li>
     </ol>
   </div>
 </section>
 
 <section>
   <div class="wrap">
-    <h2 class="ru">DЛS БЭDIЭИPULT</h2><span class="de">Ein Regler, eine Aufgabe.</span>
+    <h2 class="ru">DAS BEDIEИPULT</h2><span class="de">Ein Regler, eine Aufgabe.</span>
     <div class="knobs">
-      <div><div class="knob"></div>SIGИЛL</div>
-      <div><div class="knob"></div>STЯЛHLUИG</div>
-      <div><div class="knob"></div>UMLЛUFБЛHИ</div>
-      <div><div class="knob"></div>STЛЯT</div>
-      <div><div class="knob"></div>SCHШЭЯЭLOSIGKЭIT</div>
-      <div><div class="knob"></div>FUИKSTILLЭ</div>
-      <div><div class="knob"></div>ЭCHO</div>
-      <div><div class="knob"></div>HЛLL</div>
+      <div><div class="knob"></div>SIGИAL</div>
+      <div><div class="knob"></div>STЯAHLUИG</div>
+      <div><div class="knob"></div>UMLAUFBAHИ</div>
+      <div><div class="knob"></div>STAЯT</div>
+      <div><div class="knob"></div>SCHШEЯELOSIGKEIT</div>
+      <div><div class="knob"></div>FUИKSTILLE</div>
+      <div><div class="knob"></div>ECHO</div>
+      <div><div class="knob"></div>HALL</div>
     </div>
   </div>
 </section>
 
 <section>
   <div class="wrap">
-    <h2 class="ru">STЛИD DЭЯ ЛЯБЭITЭИ</h2>
+    <h2 class="ru">ШAS EЯ KAИИ</h2><span class="de">Sechs kleine Stücke, gespielt vom echten Klangcode des Geräts (VOSTOK, nur Werksklänge), und so sieht es auf dem Bildschirm aus.</span>
+    <div class="grid">
+      <div class="card"><h3>MIИIMAL ШAVE</h3><audio controls preload="none" src="hoerproben/minimal-wave.mp3"></audio>
+        <p class="small">VOSTOK-1, SIGNALTON, KLICKTAKT, FUNKTURM</p></div>
+      <div class="card"><h3>COLDШAVE</h3><audio controls preload="none" src="hoerproben/coldwave.mp3"></audio>
+        <p class="small">FROSTBASS, KALTFRONT, NORDLICHT, STAHLMARSCH</p></div>
+      <div class="card"><h3>POST-PUИK</h3><audio controls preload="none" src="hoerproben/post-punk.mp3"></audio>
+        <p class="small">FABRIKHALLE, SAITENERSATZ, TROMMLER, FUNKTURM</p></div>
+      <div class="card"><h3>DAЯKШAVE</h3><audio controls preload="none" src="hoerproben/darkwave.mp3"></audio>
+        <p class="small">KATHEDRALE, TIEFSEE, NACHTWACHE, STAHLMARSCH</p></div>
+      <div class="card"><h3>SOVIETШAVE</h3><audio controls preload="none" src="hoerproben/sovietwave.mp3"></audio>
+        <p class="small">MIR, SALJUT, SOJUS, KLICKTAKT</p></div>
+      <div class="card"><h3>DOOMEЯШAVE</h3><audio controls preload="none" src="hoerproben/doomerwave.mp3"></audio>
+        <p class="small">PLATTENBAU, SPAETSCHICHT, KUECHENRADIO, STAHLMARSCH</p></div>
+    </div>
+    <div class="shots">
+      <figure><img src="bilder/splash.png" alt="Startbildschirm" width="240" height="240"><figcaption>Startbildschirm</figcaption></figure>
+      <figure><img src="bilder/edit_vostok.png" alt="VOSTOK, Seite 1: Signal und Strahlung" width="240" height="240"><figcaption>VOSTOK, Seite 1: Signal und Strahlung</figcaption></figure>
+      <figure><img src="bilder/edit_vostok_2.png" alt="Seite 2: Schwerelosigkeit, Funkstille, Sub, Leiern" width="240" height="240"><figcaption>Seite 2: Schwerelosigkeit, Funkstille, Sub, Leiern</figcaption></figure>
+      <figure><img src="bilder/layer_edit_active.png" alt="Klangerzeugung wählen: VSTK zuerst" width="240" height="240"><figcaption>Klangerzeugung wählen: VSTK zuerst</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2 class="ru">STAИD DEЯ AЯBEITEИ</h2>
     <table>
       <tr><th>Etappe</th><th>Inhalt</th><th>Status</th></tr>
-      <tr><td>Sputnik</td><td>Port-Datei <code>smk37-port.yaml</code>, Felucca-Basis, Emulator</td><td>läuft</td></tr>
+      <tr><td>Sputnik</td><td>Port-Datei <code>smk37-port.yaml</code>, Felucca-Basis, Emulator</td><td>fertig</td></tr>
       <tr><td>Wostok</td><td>Klangkern: acht Signale, sechs Makros, 64 Klänge</td><td>fertig</td></tr>
-      <tr><td>Woschod</td><td>Oberfläche, pseudo-kyrillische Schrift, Palette, Startbildschirm</td><td>läuft</td></tr>
+      <tr><td>Woschod</td><td>Oberfläche, pseudo-kyrillische Schrift, Palette, Startbildschirm</td><td>fertig (Sprachen folgen)</td></tr>
       <tr><td>Sojus</td><td>Sequenzer und Rhythmus</td><td>geplant</td></tr>
       <tr><td>Saljut</td><td>SMK-37-Vollausbau</td><td>geplant</td></tr>
       <tr><td>Mir</td><td>Veröffentlichung, Handbuch</td><td>geplant</td></tr>
     </table>
     <p>Quellcode: <a href="https://github.com/g0rst/VostockFM-1">github.com/g0rst/VostockFM-1</a></p>
     <p>Handbuch: <a href="handbuch/de.html">Deutsch</a> · <a href="handbuch/en.html">English</a> · <a href="handbuch/ru.html">Русский</a></p>
-    <p class="quote" style="background:var(--red)"><strong>ЭMULЛTOЯ:</strong> <a href="emu/" style="color:var(--paper)">Im Browser ausprobieren</a> – Chrome oder Edge, ohne Gerät. Noch mit der Felucca-Oberfläche; die Vostok-Klänge und -Bedienung folgen Etappe für Etappe.</p>
+    <p class="quote" style="background:var(--red)"><strong>EMULATOЯ:</strong> <a href="emu/" style="color:var(--paper)">Im Browser ausprobieren</a> – Chrome oder Edge, ohne Gerät. Noch mit der Felucca-Oberfläche; die Vostok-Klänge und -Bedienung folgen Etappe für Etappe.</p>
   </div>
 </section>
 </main>

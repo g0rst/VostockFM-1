@@ -68,13 +68,14 @@ program code as the device.
 
 # The Institute's lettering
 
-The screen texts are set in faux-Cyrillic: some capital letters appear as Cyrillic letters that look alike.
+The screen texts are set in faux-Cyrillic: five capital letters appear as Cyrillic letters that look alike. All the
+others stay as they are, so everything is easy to read.
 
-| Latin | A | B | E | N | R | W | X | Y |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| on the screen | Л | Б | Э | И | Я | Ш | Ж | Ч |
+| Latin | N | R | W | X | Y |
+| --- | --- | --- | --- | --- | --- |
+| on the screen | И | Я | Ш | Ж | Ч |
 
-So "ARCHIV" becomes ЛЯCHIV and "FUNKSTILLE" becomes FUИKSTILLЭ. Names and licences in the credits, and the help
+So "ARCHIV" becomes AЯCHIV and "FUNKSTILLE" becomes FUИKSTILLE. Names and licences in the credits, and the help
 hints, stay Latin. The screen texts are German for now; English ones are in preparation.
 
 # The VOSTOK engine
@@ -137,6 +138,29 @@ The first sixteen sounds are the founding crew. Then come eight sounds for each 
 | 57–64 | Doomerwave | HINTERHOF, NIESELREGEN, TRAMHALTE, KUECHENRADIO, SPAETSCHICHT, TREPPENHAUS, TONBAND, LETZTE TRAM |
 
 KNOB 4 (LIST) filters the list by bass, lead, pad, pluck, keys, drum and FX.
+
+# Listening examples
+
+Six little pieces played by the device's real sound code: only the VOSTOK engine and its factory sounds, nothing changed but the volume. Listen closely, then play them yourself!
+
+| Style | Listen | Sounds |
+| --- | --- | --- |
+| Minimal wave | <audio controls preload="none" src="../hoerproben/minimal-wave.mp3"></audio> | VOSTOK-1, SIGNALTON, KLICKTAKT, FUNKTURM |
+| Coldwave | <audio controls preload="none" src="../hoerproben/coldwave.mp3"></audio> | FROSTBASS, KALTFRONT, NORDLICHT, STAHLMARSCH |
+| Post-punk | <audio controls preload="none" src="../hoerproben/post-punk.mp3"></audio> | FABRIKHALLE, SAITENERSATZ, TROMMLER, FUNKTURM |
+| Darkwave | <audio controls preload="none" src="../hoerproben/darkwave.mp3"></audio> | KATHEDRALE, TIEFSEE, NACHTWACHE, STAHLMARSCH |
+| Sovietwave | <audio controls preload="none" src="../hoerproben/sovietwave.mp3"></audio> | MIR, SALJUT, SOJUS, KLICKTAKT |
+| Doomerwave | <audio controls preload="none" src="../hoerproben/doomerwave.mp3"></audio> | PLATTENBAU, SPAETSCHICHT, KUECHENRADIO, STAHLMARSCH |
+
+> **Remember, Pioneer:** Playing along is allowed. Copying too. That is how musicians learn.
+
+## What it looks like
+
+<div class="screens">
+<figure class="screen"><img src="../bilder/splash.png" alt="The start screen" width="240" height="240"><figcaption>The start screen</figcaption></figure>
+<figure class="screen"><img src="../bilder/edit_vostok.png" alt="VOSTOK, page 1: SIGNL, STRAL, ORBIT, START" width="240" height="240"><figcaption>VOSTOK, page 1: SIGNL, STRAL, ORBIT, START</figcaption></figure>
+<figure class="screen"><img src="../bilder/edit_vostok_2.png" alt="Page 2: SCHWB, STILL, SUB, LEIER" width="240" height="240"><figcaption>Page 2: SCHWB, STILL, SUB, LEIER</figcaption></figure>
+</div>
 
 # Exercises
 

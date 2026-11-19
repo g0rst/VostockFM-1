@@ -69,14 +69,14 @@ Programmcode wie das Gerät.
 
 # Die Schrift des Instituts
 
-Alle Bildschirmtexte sind deutsch, aber in Pseudo-Kyrillisch gesetzt: Einige Großbuchstaben erscheinen als kyrillische
-Buchstaben, die ähnlich aussehen.
+Alle Bildschirmtexte sind deutsch, aber in Pseudo-Kyrillisch gesetzt: Fünf Großbuchstaben erscheinen als kyrillische
+Buchstaben, die ähnlich aussehen. Alle anderen bleiben, wie sie sind, damit du alles gut lesen kannst.
 
-| Lateinisch | A | B | E | N | R | W | X | Y |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| auf dem Bildschirm | Л | Б | Э | И | Я | Ш | Ж | Ч |
+| Lateinisch | N | R | W | X | Y |
+| --- | --- | --- | --- | --- | --- |
+| auf dem Bildschirm | И | Я | Ш | Ж | Ч |
 
-So wird aus „ARCHIV“ ЛЯCHIV und aus „FUNKSTILLE“ FUИKSTILLЭ. Namen und Lizenzen in den Credits sowie die
+So wird aus „ARCHIV“ AЯCHIV und aus „FUNKSTILLE“ FUИKSTILLE. Namen und Lizenzen in den Credits sowie die
 Hilfehinweise bleiben lateinisch.
 
 # Die Klangerzeugung VOSTOK
@@ -139,6 +139,29 @@ Die ersten sechzehn Klänge sind die Gründungsbesatzung. Danach folgen je acht 
 | 57–64 | Doomerwave | HINTERHOF, NIESELREGEN, TRAMHALTE, KUECHENRADIO, SPAETSCHICHT, TREPPENHAUS, TONBAND, LETZTE TRAM |
 
 Mit KNOB 4 (LIST) filterst du die Liste nach Bass, Lead, Pad, Pluck, Keys, Drum und FX.
+
+# Hörproben
+
+Sechs kleine Stücke, gespielt vom echten Klangcode des Geräts: nur die Klangerzeugung VOSTOK und ihre Werksklänge, nichts nachbearbeitet außer der Lautstärke. Hör genau hin und spiel sie dann selbst nach!
+
+| Stil | Hören | Klänge |
+| --- | --- | --- |
+| Minimal Wave | <audio controls preload="none" src="../hoerproben/minimal-wave.mp3"></audio> | VOSTOK-1, SIGNALTON, KLICKTAKT, FUNKTURM |
+| Coldwave | <audio controls preload="none" src="../hoerproben/coldwave.mp3"></audio> | FROSTBASS, KALTFRONT, NORDLICHT, STAHLMARSCH |
+| Post-Punk | <audio controls preload="none" src="../hoerproben/post-punk.mp3"></audio> | FABRIKHALLE, SAITENERSATZ, TROMMLER, FUNKTURM |
+| Darkwave | <audio controls preload="none" src="../hoerproben/darkwave.mp3"></audio> | KATHEDRALE, TIEFSEE, NACHTWACHE, STAHLMARSCH |
+| Sovietwave | <audio controls preload="none" src="../hoerproben/sovietwave.mp3"></audio> | MIR, SALJUT, SOJUS, KLICKTAKT |
+| Doomerwave | <audio controls preload="none" src="../hoerproben/doomerwave.mp3"></audio> | PLATTENBAU, SPAETSCHICHT, KUECHENRADIO, STAHLMARSCH |
+
+> **Merke dir, Pionier:** Nachspielen ist erlaubt. Abschreiben auch. So lernen Musiker.
+
+## So sieht es aus
+
+<div class="screens">
+<figure class="screen"><img src="../bilder/splash.png" alt="Der Startbildschirm" width="240" height="240"><figcaption>Der Startbildschirm</figcaption></figure>
+<figure class="screen"><img src="../bilder/edit_vostok.png" alt="VOSTOK, Seite 1: SIGNL, STRAL, ORBIT, START" width="240" height="240"><figcaption>VOSTOK, Seite 1: SIGNL, STRAL, ORBIT, START</figcaption></figure>
+<figure class="screen"><img src="../bilder/edit_vostok_2.png" alt="Seite 2: SCHWB, STILL, SUB, LEIER" width="240" height="240"><figcaption>Seite 2: SCHWB, STILL, SUB, LEIER</figcaption></figure>
+</div>
 
 # Übungsstücke
 
