@@ -254,6 +254,7 @@ static uint32_t engine_icon(const char *name)
         {"DRUM", ICON_DRUM},
         {"NOISE", ICON_NOISE},
         {"FM6", ICON_MOD},                    /* (symbol_modular: six operators patched; a glyph of its own wanted) */
+        {"VOSTOK", ICON_X_STAR},              /* (Vostok: the star of the space age) */
     };
     uint32_t i;
     for (i = 0; i < sizeof M / sizeof M[0]; i++)

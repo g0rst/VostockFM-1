@@ -40,6 +40,7 @@ static uint8_t eng_mem_owner[NPART];       /* engine index + 1 whose state is in
 #if FELUCCA_SLICE
 #include "eng_slice.c"
 #endif
+#include "eng_vostok.c"         /* VOSTOK: the Vostok sound core (g0rst) */
 
 /* the editor protocol, user presets and projects store these indices: append, never reorder */
 static const engine_t *const ENGINES[NENGINES] = {
@@ -63,6 +64,7 @@ static const engine_t *const ENGINES[NENGINES] = {
 #if FELUCCA_SLICE
     &ENG_SLICE,                  /* 13 (FELUCCA_SLICE=0 builds without it) */
 #endif
+    &ENG_VOSTOK,                 /* 14 (ENGI_VOSTOK; 13 without SLICE) */
 };
 
 /* a track's engine number as an index (the audio paths: a compare, cheaper than % NENGINES; a bad number: 0) */
@@ -112,6 +114,9 @@ static const char *snd_missing(const track_t *t, uint32_t *code)
  * engine indices, never DIGITAL's reserved 1 (with FELUCCA_FM4 it follows FM6). The indices stay as they are (the
  * stores and the protocol hold them); only this table orders them */
 static const uint8_t ENGINE_ORDER[NENG_SHOWN] = {
+#if !FELUCCA_FM4
+    ENGI_VOSTOK,                 /* VOSTOK first: the Vostok sound core (not in the retired FELUCCA_FM4 test build) */
+#endif
     0,                           /* ANALOG */
     12,                          /* FM6 */
 #if FELUCCA_FM4
@@ -127,7 +132,7 @@ static const uint8_t ENGINE_ORDER[NENG_SHOWN] = {
 
 /* the engines one can pick (engine 1 only with FELUCCA_FM4), in ENGINE_ORDER: eng_ok(e), the n-th of them
  * eng_vis(n), e's place among them eng_rank(e), the next / previous one eng_step(e, dir) (wraps) */
-static int eng_ok(uint32_t e) { return e < NENGINES && (FELUCCA_FM4 || e != ENGI_DIGITAL); }
+static int eng_ok(uint32_t e) { return e < NENGINES && (FELUCCA_FM4 ? e != ENGI_VOSTOK : e != ENGI_DIGITAL); }
 static uint32_t eng_vis(uint32_t n) { return ENGINE_ORDER[n % NENG_SHOWN]; }
 static uint32_t eng_rank(uint32_t e)
 {

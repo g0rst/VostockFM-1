@@ -7,16 +7,19 @@ typedef struct {
     uint32_t user, filter;
 } favorites_t;
 static favorites_t favorites __attribute__((section(".pool")));
+/* the engines with a row of factory favourites: 0..13. Row 14 holds the MIDI learn map (midi_learn.c) and row 15 the
+ * custom palette (below), so VOSTOK (engine 14, eng_vostok.c) has none: its presets cannot be marked (Vostok) */
+#define FAV_NENG 14u
 static int favorite_has(uint32_t engine, uint32_t preset)
 {
     if (engine == NENGINES)
         return preset < UP_SLOTS && ((favorites.user >> preset) & 1u);
-    return engine < NENGINES && engine < 16u && preset < 256u &&
+    return engine < NENGINES && engine < FAV_NENG && preset < 256u &&
         ((favorites.factory[engine][preset / 8u] >> (preset % 8u)) & 1u);
 }
 static int favorite_set(uint32_t engine, uint32_t preset, int on)
 {
-    if (engine > NENGINES || (engine == NENGINES ? preset >= UP_SLOTS : engine >= 16u || preset >= 256u))
+    if (engine > NENGINES || (engine == NENGINES ? preset >= UP_SLOTS : engine >= FAV_NENG || preset >= 256u))
         return 0;
     if (favorite_has(engine, preset) == !!on) return 0;
     if (engine == NENGINES) {
