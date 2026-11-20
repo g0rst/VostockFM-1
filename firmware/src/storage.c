@@ -142,7 +142,8 @@ static inline int st_in_usrflash(uint32_t off) { return off >= FL_SMP_LO && off 
 static uint8_t st_owner_cleared;                /* (the UI may say so) */
 static void st_owner_check(void)
 {
-    static const char FAM[] = "FELUCCA";            /* the tag: "SMK37DATA" + this, zero-padded to 16 B */
+    static const char FAM[] = "VOSTOK";             /* the tag: "SMK37DATA" + this, zero-padded to 16 B (Vostok: its own
+                                                     * family, smk37-port.yaml data_family; Felucca's data is cleared) */
     uint8_t tag[16], want[16];
     uint32_t i, erased = 1, ours = 1, s;
     for (i = 0; i < 16u; i++)
