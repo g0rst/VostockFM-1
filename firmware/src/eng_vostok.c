@@ -4,7 +4,7 @@
  * curated SIGNALE (algorithm + ratio recipes) and six macros, so a cold minimal-wave bass, a coldwave lead or a
  * sovietwave bell is one knob away instead of 155 DX7 bytes.
  *
- *   E0 SIGNL  the recipe: SPUTN VOSTK MOLNJ KOSMO TUNDR POLAR FUNK HALLE (below, VK_SIG)
+ *   E0 SIGNL  the recipe: SPUTN VOSTK MOLNJ KOSMO TUNDR POLAR FUNK HALLE (below, VK_SIG), or KIT (the drums)
  *   E1 STRAL  Strahlung: the modulation index (brightness). ENV / LFO -> FLT (and the matrix's CUT) move it too,
  *             so ENV -> FLT is the classic FM brightness envelope
  *   E2 ORBIT  Umlaufbahn: the modulator's self-feedback (roughness, buzz); ENV / LFO -> SHP move it too
@@ -23,7 +23,7 @@
 
 #define ENGI_VOSTOK (13u + FELUCCA_SLICE)   /* engines.c ENGINES[] (append-only: after SLICE) */
 
-static const char *const N_VK_SIG[] = {"SPUTN", "VOSTK", "MOLNJ", "KOSMO", "TUNDR", "POLAR", "FUNK", "HALLE"};
+static const char *const N_VK_SIG[] = {"SPUTN", "VOSTK", "MOLNJ", "KOSMO", "TUNDR", "POLAR", "FUNK", "HALLE", "KIT"};
 
 typedef struct {
     uint16_t cr, mr;             /* carrier and modulator frequency ratios, Q8 (256 = 1:1) */
@@ -44,27 +44,85 @@ static const vk_sig_t VK_SIG[8] = {
     {256, 512, VK_RAD * 2, 0, 3},         /* MASCHINENHALLE: a sine with a falling pitch: kick, tom, click */
 };
 
+/* KIT (SIGNL 9, Sojus): the MASCHINENHALLE kit. The note picks the drum (General MIDI: 36 kick, 38 snare, 39 clap,
+ * 37 rim, 42 / 46 closed / open hat, the toms, 56 the TELEMETRIE beep), each drum a signal at a pitch of its own with
+ * an exponential decay of its own (on top of the ADSR, in the amp hook). STRAL brightens or darkens them all (64 =
+ * as made), START is the length (32 = as made; 0 half, 127 about four times), ORBIT and STILL as for any signal;
+ * SCHWB and LEIER do nothing here. The voice keeps its drum in ph[2] (no second carrier in a kit) */
+#define VK_KIT 8u
+typedef struct {
+    uint8_t sig;                 /* VK_SIG[] */
+    uint8_t note;                /* the pitch it sounds at (0: the note played: the toms) */
+    uint8_t bright;              /* the index at STRAL 64 (0..127) */
+    uint16_t c;                  /* the decay per control tick, Q16 (1378 ticks / s: c ~ 65536 / (tau * 1378)) */
+    int16_t lvl;                 /* its level, Q15 */
+} vk_drum_t;
+enum { VD_KICK, VD_SNARE, VD_CLAP, VD_RIM, VD_CHAT, VD_OHAT, VD_TOM, VD_PIEP };
+static const vk_drum_t VK_DRUM[8] = {
+    {7, 36, 20, 136, 32767},     /* KICK: MASCHINENHALLE, the falling sine, ~0.35 s */
+    {6, 64, 70, 297, 26000},     /* SNARE: FUNKSPRUCH's noise, ~0.16 s */
+    {6, 72, 90, 396, 24000},     /* CLAP, ~0.12 s */
+    {5, 84, 60, 1585, 22000},    /* RIM: POLARLICHT's bell, very short */
+    {6, 100, 127, 1189, 16000},  /* closed hat, ~0.04 s */
+    {6, 100, 127, 136, 15000},   /* open hat, ~0.35 s */
+    {7, 0, 15, 190, 30000},      /* TOM: at the note played, ~0.25 s */
+    {0, 96, 30, 475, 18000},     /* TELEMETRIE: SPUTNIK's beep, ~0.1 s */
+};
+static uint32_t vk_kit_drum(uint32_t note)
+{
+    switch (note) {
+    case 35: case 36: return VD_KICK;
+    case 37: return VD_RIM;
+    case 38: case 40: return VD_SNARE;
+    case 39: return VD_CLAP;
+    case 42: case 44: return VD_CHAT;
+    case 46: return VD_OHAT;
+    case 41: case 43: case 45: case 47: case 48: case 50: return VD_TOM;
+    case 56: return VD_PIEP;
+    default: return note < 35u ? VD_KICK : note < 60u ? VD_TOM : VD_PIEP;
+    }
+}
+/* the signal a voice plays: its track's, or in a kit its drum's */
+static const vk_sig_t *vk_sig_of(const track_t *t, const voice_t *v)
+{
+    uint32_t e = (uint32_t)t->p[P_E0];
+    return &VK_SIG[e == VK_KIT ? VK_DRUM[v->ph[2] & 7u].sig : e & 7u];
+}
+
 /* the wobble's rate per block: ~0.55 Hz (1378 blocks / s), a little different per voice (age) */
 #define VK_LEIER_INC 1700000u
 
 static void vostok_note_on(track_t *t, voice_t *v)
 {
+    const vk_sig_t *sg;
+    int kit = t->p[P_E0] == (int16_t)VK_KIT;
     v->ph[1] = 0;
-    v->ph[2] = 0x40000000u;      /* the second carrier a quarter turn on: no phasing at the start */
+    v->ph[2] = kit ? vk_kit_drum(v->note) : 0x40000000u;   /* the kit's drum, or the second carrier a quarter turn on */
+    if (kit)
+        v->ph[0] = 0;                                     /* (a drum starts at its zero crossing: the same click each hit) */
+    sg = vk_sig_of(t, v);
     v->s[0] = 32767;
-    v->s[1] = t->p[P_E3] > 64 ? 0 : 32767;
+    v->s[1] = !kit && t->p[P_E3] > 64 ? 0 : 32767;
     v->s[2] = 0;
     v->s[3] = 0;
     v->s[4] = 0;
     v->s[5] = (int32_t)(v->age * 0x9E3779B9u);
-    v->s[6] = VK_SIG[(uint32_t)t->p[P_E0] & 7u].kind <= 1 ? 0 : 32767;   /* the drum's pitch envelope, or */
-    v->s[7] = VK_SIG[(uint32_t)t->p[P_E0] & 7u].kind <= 1 ? 0 : (int32_t)(v->age * 2654435761u) | 1;   /* the DC blocker */
+    v->s[6] = sg->kind <= 1 ? 0 : 32767;                              /* the drum's pitch envelope, or */
+    v->s[7] = sg->kind <= 1 ? 0 : (int32_t)(v->age * 2654435761u) | 1;   /* the DC blocker */
 }
 
 /* START above 64: the swell, once a control tick (1378 / s), on top of the ADSR */
 static int32_t vostok_amp(track_t *t, voice_t *v, int32_t adsr)
 {
     int32_t st = t->p[P_E3];
+    if (t->p[P_E0] == (int16_t)VK_KIT) {                    /* KIT: the drum's own decay, START its length */
+        const vk_drum_t *d = &VK_DRUM[v->ph[2] & 7u];
+        int32_t c = (int32_t)d->c * 64 / (st + 32);
+        v->s[1] -= (int32_t)(((int64_t)v->s[1] * c) >> 16) + 1;
+        if (v->s[1] < 0)
+            v->s[1] = 0;
+        return mulq15(mulq15(adsr, v->s[1]), d->lvl);
+    }
     if (st > 64 && v->s[1] < 32767) {
         int32_t ticks = (st - 64) * 2067 / 63;                 /* up to ~1.5 s */
         v->s[1] = clamp(v->s[1] + 32767 / (ticks > 0 ? ticks : 1), 0, 32767);
@@ -77,11 +135,18 @@ static int32_t vostok_amp(track_t *t, voice_t *v, int32_t adsr)
 static void vostok_render(track_t *t, voice_t *v, int32_t *out, uint32_t n, const vmod_t *m)
 {
     const int16_t *p = t->p;
-    const vk_sig_t *sg = &VK_SIG[(uint32_t)p[P_E0] & 7u];
-    uint32_t inc = m->inc, i;
+    const int kit = p[P_E0] == (int16_t)VK_KIT;
+    const vk_sig_t *sg;
+    if (kit && (v->ph[2] & 7u) != vk_kit_drum(v->note)) {   /* a kit on a MONO track: the voice moved on to another
+                                                          * note without a note-on here: start that drum */
+        vostok_note_on(t, v);
+    }
+    sg = vk_sig_of(t, v);
+    const vk_drum_t *dr = &VK_DRUM[v->ph[2] & 7u];
+    uint32_t inc = kit && dr->note ? pitch_inc((uint32_t)dr->note * 16u) : m->inc, i;
     uint32_t ph0 = v->ph[0], ph1 = v->ph[1], ph2 = v->ph[2], sub_ph = (uint32_t)v->s[4];
     int32_t bright, kq, fb, envk = v->s[0], prev = v->s[2], lp = v->s[3], penv = v->s[6];
-    int32_t det = p[P_E4], still = p[P_E5], sub = p[P_E6] * 200, leier = p[P_E7];
+    int32_t det = kit ? 0 : p[P_E4], still = p[P_E5], sub = kit ? 0 : p[P_E6] * 200, leier = kit ? 0 : p[P_E7];
     uint32_t inc_m, inc2, k;
     int32_t bits_sh, lpa, hold = 0, held = 0;
 
@@ -91,10 +156,10 @@ static void vostok_render(track_t *t, voice_t *v, int32_t *out, uint32_t n, cons
         inc += (uint32_t)((int32_t)(inc >> 12) * ((sine_i((uint32_t)v->s[5]) * leier * 41) >> 15) / 127);
 
     /* STRAL and ENV / LFO -> FLT: the index, then START's fall after the attack */
-    bright = clamp(p[P_E1] * 256 + m->cutoff, 0, 127 << 8);
+    bright = clamp((kit ? dr->bright + p[P_E1] - 64 : p[P_E1]) * 256 + m->cutoff, 0, 127 << 8);
     if (sg->kind == 1)                                         /* TUNDRA breathes: the index +-30 % */
         bright = clamp(bright + ((sine_i((uint32_t)v->s[5] >> 1) * 38) >> 8), 0, 127 << 8);
-    if (p[P_E3] < 64) {                                        /* knackig: towards a quarter of the index */
+    if (p[P_E3] < 64 && !kit) {                                /* knackig: towards a quarter of the index */
         int32_t floor_k = 8192, c = 2 + (p[P_E3] * p[P_E3]) / 4;    /* the higher, the slower: */
         envk -= (envk - floor_k) / (c + 1);                          /* ~2 ms at 0, ~0.7 s at 63 */
         if (envk < floor_k)
@@ -246,13 +311,18 @@ static const preset_t VOSTOK_PRESETS[] = {
     {"TREPPENHAUS", {5, 40, 0, 40, 30, 60, 0, 40}, {0, 100, 40, 100}, 0, 0, FX(0, 40, 60, 110), PAT(7)},
     {"TONBAND", {4, 50, 0, 90, 60, 100, 0, 80}, {50, 110, 110, 100}, 0, 0, FX(0, 60, 30, 90), PAT(5)},
     {"LETZTE TRAM", {1, 40, 0, 30, 10, 50, 70, 30}, {0, 90, 90, 70}, 0, 1, FX(0, 0, 30, 80), PAT(8)},
+    /* (Sojus) the MASCHINENHALLE kits: SIGNL KIT, the drum by the note (VK_DRUM), the ADSR held open */
+    {"MASCHINENHALLE", {8, 64, 0, 32, 0, 0, 0, 0}, {0, 127, 127, 40}, 0, 0, FX(0, 0, 0, 20), PAT(15)},
+    {"MARSCHKAPELLE", {8, 72, 10, 24, 0, 0, 0, 0}, {0, 127, 127, 30}, 0, 0, FX(10, 0, 0, 30), PAT(14)},
+    {"SCHLURFKIT", {8, 44, 0, 64, 0, 60, 0, 0}, {0, 127, 127, 60}, 0, 0, FX(0, 0, 20, 60), PAT(16)},
+    {"RUNDFUNKKIT", {8, 90, 30, 20, 0, 30, 0, 0}, {0, 127, 127, 30}, 0, 0, FX(0, 0, 10, 30), PAT(12)},
 };
 
 static const engine_t ENG_VOSTOK = {
     .name = "VOSTOK",
     .page_title = {"SIGNL", "STILL"},
     .edit = {
-        {"SIGNL", F_ENUM, 0, 7, 1, N_VK_SIG, 0},
+        {"SIGNL", F_ENUM, 0, 8, 1, N_VK_SIG, 0},
         {"STRAL", F_PCT, 0, 127, 64, 0, 0},
         {"ORBIT", F_PCT, 0, 127, 0, 0, 0},
         {"START", F_PCT, 0, 127, 32, 0, 0},

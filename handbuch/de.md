@@ -40,9 +40,10 @@ Sovietwave und Doomerwave.
 | Teil | Stand |
 | --- | --- |
 | Klangerzeugung VOSTOK: 8 Signale, 6 Makros, SUB, LEIER | fertig |
-| 64 Werksklänge in sechs Stilrichtungen | fertig |
+| 68 Werksklänge: sechs Stilrichtungen und vier Schlagzeug-Kits | fertig |
+| Besatzung beim Einschalten, Maschinenhalle-Kit, Planerfüllung, SMK-37-Tasten SPUR und CHORD | fertig |
 | Schrift in Pseudo-Kyrillisch, Farbpalette VOSTOK, Startbildschirm | fertig |
-| Missionen, Sequenzer „Fünfjahresplan“, Rundfunk-Studio, Lehrmodus | in Vorbereitung |
+| Missionen, Rundfunk-Studio, Lehrmodus | in Vorbereitung |
 | Englische Bildschirmtexte (Einstellung SPRACHE) | in Vorbereitung |
 
 Alles, was „in Vorbereitung“ ist, beschreibt dieses Handbuch noch nicht. Bis dahin bedienst du die übrigen Funktionen
@@ -94,7 +95,7 @@ VOSTOK rechnet im Z37-Formel-Code: eine Frequenzmodulation mit zwei Operatoren. 
 stärker er das tut, desto mehr Obertöne entstehen und desto heller klingt der Ton. Statt hunderter Einstellungen gibt
 es acht fertige Rezepte, die **Signale**, und sechs **Makros**, die gleich mehrere Dinge auf einmal verändern.
 
-## Die acht Signale (Regler SIGNL)
+## Die Signale (Regler SIGNL)
 
 | Nr. | Signal | Bildschirm | Klang | Wofür |
 | --- | --- | --- | --- | --- |
@@ -106,6 +107,7 @@ es acht fertige Rezepte, die **Signale**, und sechs **Makros**, die gleich mehre
 | 6 | Polarlicht | POLAR | FM-Glocke | Sovietwave-Melodien |
 | 7 | Funkspruch | FUNK | Rauschen, Metall | Hi-Hats, Snares, Geräusche |
 | 8 | Maschinenhalle | HALLE | fallender Ton | Kick, Tom, Klick |
+| 9 | Kit | KIT | das ganze Schlagzeug | eine Spur für alle Trommeln (siehe Besatzung) |
 
 ## Die Makros
 
@@ -124,9 +126,66 @@ STILL, SUB und LEIER.
 
 > **Merke dir, Pionier:** Wer die Strahlung erhöht, erhält mehr Obertöne!
 
-# Die 64 Werksklänge
+# Die Besatzung und der Fünfjahresplan
 
-Die ersten sechzehn Klänge sind die Gründungsbesatzung. Danach folgen je acht Klänge pro Stilrichtung.
+## Die Besatzung
+
+Beim Einschalten sind alle vier Spuren schon besetzt, und jede hat ein Muster im Sequenzer. Drücke PLAY, und die
+Besatzung spielt.
+
+| Spur | Rolle | Klang | Muster |
+| --- | --- | --- | --- |
+| 1 | Bass | VOSTOK-1 | OFFBEAT |
+| 2 | Fläche | TUNDRA | PAD |
+| 3 | Lead | MOLNIJA | LEAD |
+| 4 | Rhythmus | MASCHINENHALLE | MOTORIK |
+
+## Die Maschinenhalle
+
+Das neunte Signal heißt **KIT**. Damit spielt eine einzige Spur das ganze Schlagzeug: Welche Trommel erklingt,
+entscheidet die Taste.
+
+| Note | Trommel |
+| --- | --- |
+| 36 (C2) | Stampfer (Bassdrum) |
+| 37 | Randschlag |
+| 38, 40 | Schmiede (Snare) |
+| 39 | Applaus (Klatschen) |
+| 42, 44 | Funke (geschlossene Hi-Hat) |
+| 46 | Dampf (offene Hi-Hat) |
+| 41, 43, 45, 47, 48, 50 | Kesselpauken (Toms, in ihrer Tonhöhe) |
+| 56 | Telemetrie-Piep |
+
+Auf den Tasten liegen diese Noten zwei Oktaven tiefer: Drücke zweimal OCT-. Im Sequenzer stehen sie einfach als Noten.
+
+Beim Kit wirken die Makros anders: **STRAL** macht alle Trommeln heller oder dunkler (Mitte = wie gebaut), **START**
+ist die Länge der Schläge (32 = wie gebaut), **STILL** macht sie rau wie eine alte Kassette.
+
+Vier Kit-Klänge sind dabei: MASCHINENHALLE, MARSCHKAPELLE, SCHLURFKIT und RUNDFUNKKIT. Dazu kommen drei neue Muster
+unter SAVE > PHRASES: **MARSCH**, **MOTORIK** und **SCHLURF** (der langsame Doomer-Schritt).
+
+## Die Planerfüllung
+
+Während die Musik läuft, zählt das Gerät, wie oft das Muster der gewählten Spur durchgelaufen ist. Alle vier Durchläufe
+meldet es den Stand: PLAN 25 %, PLAN 50 %, PLAN 75 %. Nach sechzehn Durchläufen erscheint **PLAN ERFÜLLT!** – und
+der nächste Plan beginnt.
+
+## Die Tasten des SMK-37
+
+| Taste | Was sie tut |
+| --- | --- |
+| NOTE REPEAT kurz | **SPUR:** die nächste Spur wählen (1: BASS, 2: FLÄCHE, 3: LEAD, 4: RHYTHMUS) |
+| NOTE REPEAT gehalten | wie bisher: Drehst du dabei an Reglern, springen die Werte beim Loslassen zurück |
+| CHORD | die Hüllkurvenseiten, noch einmal gedrückt die LFO-Seiten |
+
+Alle anderen Tasten bleiben, wie sie sind.
+
+> **Merke dir, Pionier:** Wer den Plan übererfüllt, spielt einfach weiter.
+
+# Die 68 Werksklänge
+
+Die ersten sechzehn Klänge sind die Gründungsbesatzung. Danach folgen je acht Klänge pro Stilrichtung und die vier
+Schlagzeug-Kits der Maschinenhalle.
 
 | Nr. | Gruppe | Klänge |
 | --- | --- | --- |
@@ -137,15 +196,18 @@ Die ersten sechzehn Klänge sind die Gründungsbesatzung. Danach folgen je acht 
 | 41–48 | Darkwave | KATHEDRALE, NEBELBANK, SCHATTENCHOR, TIEFSEE, NACHTWACHE, SCHWARZMEER, ORGELHALLE, MITTERNACHT |
 | 49–56 | Sovietwave | SALJUT, MIR, SOJUS, KOSMONAUT, STERNENKARTE, TAIGAWALD, SCHWERELOS, WOSTOK-6 |
 | 57–64 | Doomerwave | HINTERHOF, NIESELREGEN, TRAMHALTE, KUECHENRADIO, SPAETSCHICHT, TREPPENHAUS, TONBAND, LETZTE TRAM |
+| 65–68 | Maschinenhalle | MASCHINENHALLE, MARSCHKAPELLE, SCHLURFKIT, RUNDFUNKKIT |
 
 Mit KNOB 4 (LIST) filterst du die Liste nach Bass, Lead, Pad, Pluck, Keys, Drum und FX.
 
 # Hörproben
 
-Sechs kleine Stücke, gespielt vom echten Klangcode des Geräts: nur die Klangerzeugung VOSTOK und ihre Werksklänge, nichts nachbearbeitet außer der Lautstärke. Hör genau hin und spiel sie dann selbst nach!
+Acht kleine Stücke, gespielt vom echten Klangcode des Geräts: nur die Klangerzeugung VOSTOK und ihre Werksklänge, nichts nachbearbeitet außer der Lautstärke. Hör genau hin und spiel sie dann selbst nach!
 
 | Stil | Hören | Klänge |
 | --- | --- | --- |
+| Die Besatzung | <audio controls preload="none" src="../hoerproben/besatzung.mp3"></audio> | VOSTOK-1, TUNDRA, MOLNIJA, MASCHINENHALLE |
+| Maschinenhalle | <audio controls preload="none" src="../hoerproben/maschinenhalle.mp3"></audio> | MARSCHKAPELLE, SCHLURFKIT |
 | Minimal Wave | <audio controls preload="none" src="../hoerproben/minimal-wave.mp3"></audio> | VOSTOK-1, SIGNALTON, KLICKTAKT, FUNKTURM |
 | Coldwave | <audio controls preload="none" src="../hoerproben/coldwave.mp3"></audio> | FROSTBASS, KALTFRONT, NORDLICHT, STAHLMARSCH |
 | Post-Punk | <audio controls preload="none" src="../hoerproben/post-punk.mp3"></audio> | FABRIKHALLE, SAITENERSATZ, TROMMLER, FUNKTURM |

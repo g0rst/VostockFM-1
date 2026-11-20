@@ -175,3 +175,6 @@ decisions:                      # the owner's answers, 2026-11-17
   - "manual in German, English and Russian; faux-Cyrillic headings only in the German and English editions; the Russian edition (the gag) in real Cyrillic"
   - "display: German or English, both with faux-Cyrillic titles (setting SPRACHE)"
   - "code base: Felucca 1.6.1 + SMK-37 layer merged into main with its history; emulator published on Pages"
+  - "Sojus (2026-11-20): NOTE REPEAT tapped = SPUR (next track), held = MOMENTARY as before; CHORD = ENV, again LFO;
+     the other buttons as the Felucca layer maps them (they already match this file's meanings); MISSION and ARCHIV
+     wait for the missions (Saljut); the crew at power-on; the MASCHINENHALLE kit (SIGNL KIT); PLANERFUELLUNG"

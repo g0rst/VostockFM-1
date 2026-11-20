@@ -38,7 +38,8 @@ static const char *const PRESET_CAT[16] = {
     "LBLUBLDPPPULUPLB"           /* 14 VOSTOK (Vostok, eng_vostok.c), 64: SPUTNIK .. LETZTER BUS, then by genre: */
     "BBLUUDDU" "UPLPBUFB"        /*    Minimal Wave KASSETTE .. RECHENWERK; Coldwave EISKRISTALL .. FROSTBASS */
     "BLLBDDLB" "PPPBUPKL"        /*    Post-Punk FABRIKHALLE .. WALZWERK; Darkwave KATHEDRALE .. MITTERNACHT */
-    "UPLLUPUL" "PFLLBUPB",       /*    Sovietwave SALJUT .. WOSTOK-6; Doomerwave HINTERHOF .. LETZTE TRAM */
+    "UPLLUPUL" "PFLLBUPB"        /*    Sovietwave SALJUT .. WOSTOK-6; Doomerwave HINTERHOF .. LETZTE TRAM */
+    "DDDD",                      /*    (Sojus) the kits: MASCHINENHALLE MARSCHKAPELLE SCHLURFKIT RUNDFUNKKIT */
 };
 static uint32_t preset_cat(uint32_t e, uint32_t k)    /* factory preset k of engine e */
 {

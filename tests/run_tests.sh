@@ -197,7 +197,8 @@ export AC79_SDK="${AC79_SDK:-$HOME/fw-AC79_AIoT_SDK}"
 cd "$(dirname "$0")/.."
 OUT=build/host
 mkdir -p "$OUT"
-CC="${CC:-cc} -O1 -Wall -Wno-unused-function"
+# (Vostok: the host tests power on as Felucca, whose checks they are: FELUCCA_VOSTOK_CREW=0, engines.c)
+CC="${CC:-cc} -O1 -Wall -Wno-unused-function -DFELUCCA_VOSTOK_CREW=0"
 fail=0
 run() { echo "== $1"; shift; "$@" || fail=1; }
 
@@ -495,7 +496,7 @@ elif ! san_ok; then
 else
     mkdir -p "$OUT/asan"
     A="$OUT/asan"
-    SCC="${CC%% *} $SAN -Ibuild/gen -Ifirmware/src"
+    SCC="${CC%% *} $SAN -DFELUCCA_VOSTOK_CREW=0 -Ibuild/gen -Ifirmware/src"
     export ASAN_OPTIONS="${ASAN_OPTIONS:-detect_leaks=0}"
     $SCC -o "$A/ldr_test" tests/ldr_test.c
     run "ASan/UBSan: update loader (other app -> this build)" "$A/ldr_test" "$OUT/old.fwsc" build/felucca.fwsc
@@ -537,4 +538,9 @@ else
         node web/emu/emu_test.mjs build/emu/felucca.wasm "$OUT/emu_native.f32"
 fi
 
+# Vostok (Sojus): the firmware as the emulator runs it, powered on as Vostok: the crew, the MASCHINENHALLE kit,
+# PLANERFUELLUNG and the SMK-37's keys (NOTE REPEAT = SPUR, CHORD = ENV / LFO)
+$CC -w -UFELUCCA_VOSTOK_CREW -DFELUCCA_VOSTOK_CREW=1 -DVOSTOK_SMK_KEYS=1 '-DFELUCCA_VERSION="vostok"' -Ibuild/gen -Ifirmware/src \
+    -Iweb/emu -o "$OUT/vostok_test" tests/vostok_test.c -lm
+run "Vostok: crew, kit, Planerfuellung, SMK-37 keys" "$OUT/vostok_test"
 [ $fail -eq 0 ] && echo "ALL HOST TESTS PASSED" || { echo "HOST TESTS FAILED"; exit 1; }

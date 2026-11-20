@@ -1562,11 +1562,34 @@ static void style_apply(void)
 }
 
 static void ui_draw_page(uint32_t counting);
+/* Vostok (Sojus): PLANERFUELLUNG (seq.c plan_loops): every 4 loops of the selected track since PLAY the plan's share
+ * (PLAN 25 % .. 75 %), after 16 PLAN ERFUELLT! (with the Ue); then it counts on (the next plan). Not over a message */
+static void plan_report(void)
+{
+    static uint8_t shown;
+    uint8_t n = plan_loops;
+    if (n == shown)
+        return;
+    shown = n;
+    if (!song.playing || !n || n % 4u || ui.msg_t)
+        return;
+    if (n % 16u) {                                   /* (short: playing, a message has 94 px right of the BPM) */
+        char b[24];
+        str_cpy(b, "PLAN ", sizeof b);
+        fmt_int(b + str_len(b), (int32_t)(n % 16u) * 100 / 16);
+        str_cpy(b + str_len(b), " %", sizeof b - str_len(b));
+        ui_message(b);
+    } else {
+        ui_message("PLAN ERF\xDCLLT!");
+    }
+}
+
 static void ui_draw(void)
 {
     static uint8_t counting;
     style_apply();
     ui.frame++;
+    plan_report();
     if (counting != (uint8_t)seq_counting()) {          /* a count-in began or ended: the page drawn again after it */
         counting = (uint8_t)seq_counting();
         ui.force = 1;

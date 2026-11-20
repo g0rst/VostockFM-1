@@ -26,7 +26,7 @@ NAMES = ("SPUTNIK VOSTOK-1 LAIKA TELEMETRIE BAIKONUR MOLNIJA STAHLMARSCH TUNDRA 
          "FABRIKHALLE SAITENERSATZ STRASSENBAHN UNTERGRUND TROMMLER BETONBLOCK NACHTSCHICHT WALZWERK KATHEDRALE "
          "NEBELBANK SCHATTENCHOR TIEFSEE NACHTWACHE SCHWARZMEER ORGELHALLE MITTERNACHT SALJUT MIR SOJUS KOSMONAUT "
          "STERNENKARTE TAIGAWALD SCHWERELOS WOSTOK-6 HINTERHOF NIESELREGEN TRAMHALTE KUECHENRADIO SPAETSCHICHT "
-         "TREPPENHAUS TONBAND LETZTE_TRAM").split()
+         "TREPPENHAUS TONBAND LETZTE_TRAM MASCHINENHALLE MARSCHKAPELLE SCHLURFKIT RUNDFUNKKIT").split()
 P = {n.replace("_", " "): i for i, n in enumerate(NAMES)}
 
 
@@ -79,6 +79,20 @@ PIECES = [
         ("SOJUS", bar(48, 0, 0, 0, 48, 0, 55, 0, 45, 0, 0, 0, 45, 0, 52, 0) * 2, -8),
         ("KLICKTAKT", every(8, KICK, 32), -4),
         ("FUNKTURM", every(4, HAT, 32, 2), -18),
+    ]),
+    # the crew at power-on, as PLAY plays it (engines.c VK_CREW: OFFBEAT, PAD, LEAD, MOTORIK)
+    ("besatzung", "Die Besatzung", [
+        ("VOSTOK-1", bar(0, 36, 0, 36, 0, 36, 0, 48, 0, 36, 0, 36, 0, 39, 0, 43) * 2, -4),
+        ("TUNDRA", bar(60, *[0] * 7, 57, *[0] * 3, 55, *[0] * 3) * 2, -12),
+        ("MOLNIJA", bar(72, 0, 0, 74, 0, 0, 76, 0, 79, 0, 76, 0, 74, 0, 0, 0) * 2, -11),
+        ("MASCHINENHALLE", bar(36, 42, 36, 42, 38, 42, 42, 42, 36, 42, 36, 42, 38, 42, 46, 42) * 2, -3),
+    ]),
+    # the MASCHINENHALLE kit alone: MARSCH, then SCHLURF; the toms and the TELEMETRIE beep
+    ("maschinenhalle", "Maschinenhalle", [
+        ("MARSCHKAPELLE", bar(36, 0, 42, 0, 38, 0, 42, 0, 36, 0, 42, 0, 38, 0, 38, 38,
+                              36, 0, 42, 0, 38, 0, 42, 0, 36, 45, 42, 47, 38, 48, 50, 56, *[0] * 32), -2),
+        ("SCHLURFKIT", bar(*[0] * 32, 36, 0, 0, 0, 0, 0, 42, 0, 38, 0, 0, 36, 0, 0, 42, 0,
+                           36, 0, 0, 0, 0, 0, 46, 0, 39, 0, 0, 36, 0, 37, 56, 0), -4),
     ]),
     ("doomerwave", "Doomerwave", [
         ("PLATTENBAU", bar(55, *[0] * 15, 51, *[0] * 15), -9),

@@ -56,6 +56,10 @@ static void led_clear(uint8_t *nl, uint32_t id)
 }
 #endif
 
+/* Vostok: the SMK-37's own key layout (page_tap: NOTE REPEAT = SPUR, CHORD = ENV / LFO); 0: the Felucca layer's */
+#ifndef VOSTOK_SMK_KEYS
+#define VOSTOK_SMK_KEYS BOARD_SMK37
+#endif
 static const uint8_t FAM_BTN[FAM_COUNT] = {B_HOME, B_ENV, B_LFO, B_FX, B_SCL, B_EDIT, B_GLO, B_SAVE,
                                            B_ARP, B_SEQ, B_HOME};   /* MIXER: HOME's (1.2); REC is transport */
 
@@ -1429,6 +1433,29 @@ static int page_tap(uint32_t b)
         name_rename();                                  /* SAVE > USER / PROJECT: EDIT renames the slot */
         return 1;
     }
+#if VOSTOK_SMK_KEYS
+    /* Vostok (Sojus, smk37-port.yaml buttons): NOTE REPEAT (the FM-1's LFO) tapped is SPUR, the next track; held it is
+     * still MOMENTARY (above: a hold that turned a knob never taps). Its LFO pages moved to CHORD (the FM-1's ENV):
+     * CHORD opens ENV, and tapped again goes round ENV's pages and then LFO's */
+    if (b == B_LFO) {
+        static const char *const SPUR[NTRK] = {"1: BASS", "2: FL\xC4" "CHE", "3: LEAD", "4: RHYTHMUS"};   /* (94 px playing) */
+        track_select((song.sel + 1u) % NTRK);
+        ui_message(SPUR[song.sel % NTRK]);
+        return 1;
+    }
+    if (b == B_ENV && !ui.home && (cur_fam() == FAM_ENV || cur_fam() == FAM_LFO)) {   /* ENV's pages, then LFO's */
+        uint32_t n, i = ui.page;
+        for (n = 0; n < NPAGES; n++) {
+            i = (i + 1u) % NPAGES;
+            if ((PAGES[i].fam == FAM_ENV || PAGES[i].fam == FAM_LFO) && page_visible(i))
+                break;
+        }
+        ui.page = (uint8_t)i;
+        ui.fam_last[PAGES[i].fam] = ui.page;
+        page_entered();
+        return 0;
+    }
+#endif
     for (f = FAM_HOME + 1u; f < FAM_COUNT; f++)        /* (GLO SEQ SAVE ..: HOME is ui_input's, home_tap) */
         if (FAM_BTN[f] == b && b != B_HOME) {
             open_family(f);

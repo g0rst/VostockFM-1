@@ -1773,7 +1773,7 @@ function makeMockDevice(opt = {}) {
     { name: "SLICE", titles: ["SLCE", "PLAY"], edit: [E("SRC", ["BREAK", "USR1", "USR2", "USR3", "PIANO"], 0),
         E("DIV", ["4", "8", "16", "32", "AUTO", "MAN"], 2), D("START", F.INT, 0, 31, 0), D("PTCH", F.SEMI, -24, 24, 0),
         E("MODE", ["ONE", "GATE", "LOOP"], 0), E("REV", ["OFF", "ON"], 0), D("DCAY", F.TIME, 0, 127, 127), D("TONE", F.INT, 0, 127, 127)],
-      presets: [P("CHOP", [0, 2, 0, 0, 0, 0, 127, 127], [0, 127, 127, 30], 0, 9), P("STUTTER", [0, 1, 0, 0, 1, 0, 90, 110], [0, 127, 127, 12], 0, 10)] },    { name: "VOSTOK", titles: ["SIGNL", "STILL"], edit: [E("SIGNL", ["SPUTN", "VOSTK", "MOLNJ", "KOSMO", "TUNDR", "POLAR", "FUNK", "HALLE"], 1),
+      presets: [P("CHOP", [0, 2, 0, 0, 0, 0, 127, 127], [0, 127, 127, 30], 0, 9), P("STUTTER", [0, 1, 0, 0, 1, 0, 90, 110], [0, 127, 127, 12], 0, 10)] },    { name: "VOSTOK", titles: ["SIGNL", "STILL"], edit: [E("SIGNL", ["SPUTN", "VOSTK", "MOLNJ", "KOSMO", "TUNDR", "POLAR", "FUNK", "HALLE", "KIT"], 1),
         D("STRAL", F.PCT, 0, 127, 64), D("ORBIT", F.PCT, 0, 127, 0), D("START", F.PCT, 0, 127, 32), D("SCHWB", F.PCT, 0, 127, 0),
         D("STILL", F.PCT, 0, 127, 0), D("SUB", F.PCT, 0, 127, 0), D("LEIER", F.PCT, 0, 127, 0)],   /* (Vostok: eng_vostok.c) */
       presets: [P("SPUTNIK", [0, 40, 0, 20, 0, 0, 0, 0], [0, 60, 40, 40], 1, 4), P("VOSTOK-1", [1, 55, 10, 30, 0, 0, 40, 0], [0, 50, 60, 20], 1, 2),
@@ -1807,7 +1807,9 @@ function makeMockDevice(opt = {}) {
         P("HINTERHOF", [4, 40, 0, 100, 50, 80, 0, 60], [50, 110, 110, 100], 0, 5), P("NIESELREGEN", [6, 15, 0, 100, 20, 70, 0, 30], [60, 100, 110, 100], 0, 5),
         P("TRAMHALTE", [2, 40, 10, 40, 30, 70, 0, 50], [5, 90, 90, 60], 1, 4), P("KUECHENRADIO", [2, 40, 10, 40, 20, 90, 0, 50], [5, 80, 80, 50], 1, 4),
         P("SPAETSCHICHT", [1, 30, 0, 40, 20, 60, 90, 30], [0, 90, 90, 70], 1, 8), P("TREPPENHAUS", [5, 40, 0, 40, 30, 60, 0, 40], [0, 100, 40, 100], 0, 7),
-        P("TONBAND", [4, 50, 0, 90, 60, 100, 0, 80], [50, 110, 110, 100], 0, 5), P("LETZTE TRAM", [1, 40, 0, 30, 10, 50, 70, 30], [0, 90, 90, 70], 1, 8)] },
+        P("TONBAND", [4, 50, 0, 90, 60, 100, 0, 80], [50, 110, 110, 100], 0, 5), P("LETZTE TRAM", [1, 40, 0, 30, 10, 50, 70, 30], [0, 90, 90, 70], 1, 8),
+        P("MASCHINENHALLE", [8, 64, 0, 32, 0, 0, 0, 0], [0, 127, 127, 40], 0, 15), P("MARSCHKAPELLE", [8, 72, 10, 24, 0, 0, 0, 0], [0, 127, 127, 30], 0, 14),
+        P("SCHLURFKIT", [8, 44, 0, 64, 0, 60, 0, 0], [0, 127, 127, 60], 0, 16), P("RUNDFUNKKIT", [8, 90, 30, 20, 0, 30, 0, 0], [0, 127, 127, 30], 0, 12)] },
   ];
   const FM6_E = ENG.findIndex((e) => e.name === "FM6"), FM6_OWN = FM6.FACTORY_PK.length, DRUM_E = ENG.findIndex((e) => e.name === "DRUM");
   /* factory PATTERNS[] (engines.c; the device loads them from SAVE > PHRASES, presets only suggest one): absolute
@@ -1826,7 +1828,11 @@ function makeMockDevice(opt = {}) {
     [[60, 60, 61, 61, 62, 0, 63, 63, 64, 65, 65, 0, 66, 66, 66, 67], [1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0]],
     [[60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75], [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0]],
     [[36, 42, 42, 42, 38, 42, 36, 42, 36, 42, 42, 36, 38, 42, 46, 42], [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0]],   /* 12 BEAT (DRUM) */
-    [[48, 51, 55, 60, 63, 67, 72, 75, 48, 51, 55, 60, 63, 67, 72, 75], [1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0]],   /* 13 ARP */
+    [[48, 51, 55, 60, 63, 67, 72, 75, 48, 51, 55, 60, 63, 67, 72, 75], [1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0]],
+    /* Vostok (Sojus): MARSCH MOTORIK SCHLURF, the MASCHINENHALLE's beats */
+    [[36, 0, 42, 0, 38, 0, 42, 0, 36, 0, 42, 0, 38, 0, 38, 38], [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1]],
+    [[36, 42, 36, 42, 38, 42, 42, 42, 36, 42, 36, 42, 38, 42, 46, 42], [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0]],
+    [[36, 0, 0, 0, 0, 0, 42, 0, 38, 0, 0, 36, 0, 0, 42, 0], [1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0]],   /* 13 ARP */
   ];
   for (let op = 0; op < 4; op++) TP.push(D("ATK", F.TIME, 0, 127, 0), D("DEC", F.TIME, 0, 127, 0), D("SUS", F.PCT, 0, 127, 127), D("REL", F.TIME, 0, 127, 0), D("LVL", F.PCT, 0, 127, 127));
   TP.push(E("CHRD", ["OFF", "DIA3", "DIA7", "MAJ", "MIN", "DOM7", "MAJ7", "MIN7", "SUS4", "POW"], 0),   /* the chord keys 81, 82 */

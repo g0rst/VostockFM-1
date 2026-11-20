@@ -23,10 +23,11 @@ Die Felucca-README liegt unverändert in [FELUCCA.md](FELUCCA.md), Bauen in [BUI
 | Basis-Code (Felucca 1.6.1 + SMK-37-Layer) mit Versionsgeschichte | eingespielt |
 | Browser-Emulator (GitHub Actions → Pages, `/emu/`) | eingerichtet |
 | Baseline-Build, FM-1 byte-identisch | offen |
-| Klangerzeugung VOSTOK, 64 Werksklänge | fertig |
+| Klangerzeugung VOSTOK, 68 Werksklänge (mit Maschinenhalle-Kit) | fertig |
+| Sojus: Besatzung beim Einschalten, Planerfüllung, SMK-37-Tasten SPUR und CHORD (`tests/vostok_test.c`) | fertig |
 | Oberfläche: Pseudo-Kyrillisch, Palette VOSTOK, Startbildschirm | fertig |
 | Handbuch DE / EN / RU (`handbuch/`, `tools/make_handbuch.py`) | Ausgabe 1 |
-| Missionen, Sequenzer, Rundfunk-Studio, englische Bildschirmtexte | offen |
+| Missionen, Rundfunk-Studio, englische Bildschirmtexte | offen |
 
 ## Sprache und Schrift
 

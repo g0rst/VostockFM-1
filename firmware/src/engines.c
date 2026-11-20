@@ -187,11 +187,29 @@ static const struct {
      * now that the arpeggiator is the track's and a preset no longer switches it on */
     {"ARP", {48, 51, 55, 60, 63, 67, 72, 75, 48, 51, 55, 60, 63, 67, 72, 75},       /* 13 */
      {1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0}},
+    /* Vostok (Sojus): the MASCHINENHALLE's beats (eng_vostok.c KIT; GM notes as BEAT) */
+    {"MARSCH", {36, 0, 42, 0, 38, 0, 42, 0, 36, 0, 42, 0, 38, 0, 38, 38},          /* 14 the parade */
+     {1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1}},
+    {"MOTORIK", {36, 42, 36, 42, 38, 42, 42, 42, 36, 42, 36, 42, 38, 42, 46, 42},  /* 15 the motorway beat */
+     {1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0}},
+    {"SCHLURF", {36, 0, 0, 0, 0, 0, 42, 0, 38, 0, 0, 36, 0, 0, 42, 0},            /* 16 doomer half-time */
+     {1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0}},
 };
 #undef T_
 #define NPATTERNS (sizeof PATTERNS / sizeof PATTERNS[0])
 
 /* the parts at power-on (engine, preset, PATTERNS[n - 1] in the sequencer, 0 = empty: all are): bass, pad, lead, drums */
-static const uint8_t TRK_DEF[NPART][3] = {{0, 4, 0}, {ENGI_FM6, 4, 0}, {3, 0, 0}, {ENGI_DRUM, 0, 0}}; /* ANALOG ACID,
-                                                                       * FM6 PAD (was DIGITAL PAD), LOFI PULSE LD, DRUM KIT */
+/* Vostok (Sojus): the four parts are VOSTOK's crew, Bass, Flaeche, Lead and Rhythmus, each with a phrase in its
+ * sequencer, so PLAY plays at once: VOSTOK-1 on OFFBEAT, TUNDRA on PAD, MOLNIJA on LEAD, MASCHINENHALLE on MOTORIK.
+ * (Felucca: ANALOG ACID, FM6 PAD, LOFI PULSE LD, DRUM KIT, the sequencers empty) */
+static const uint8_t TRK_DEF[NPART][3] = {{0, 4, 0}, {ENGI_FM6, 4, 0}, {3, 0, 0}, {ENGI_DRUM, 0, 0}};
+/* Felucca's TRK_DEF stays what old projects and the editor know (project.c, a part a project lacks); VK_CREW is what
+ * the device sounds at power-on (main.c felucca_init). FELUCCA_VOSTOK_CREW=0 powers on as Felucca (the host tests:
+ * tests/run_tests.sh, their power-on checks are Felucca's) */
+#ifndef FELUCCA_VOSTOK_CREW
+#define FELUCCA_VOSTOK_CREW (!FELUCCA_FM4)
+#endif
+static const uint8_t VK_CREW[NPART][3] = {{ENGI_VOSTOK, 1, 2}, {ENGI_VOSTOK, 7, 5}, {ENGI_VOSTOK, 5, 4},
+                                          {ENGI_VOSTOK, 64, 15}};
+#define TRK_ON (FELUCCA_VOSTOK_CREW ? VK_CREW : TRK_DEF)   /* the power-on parts */
 static uint32_t trk_def_engine(uint32_t i) { return TRK_DEF[i % NPART][0]; }

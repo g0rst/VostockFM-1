@@ -40,9 +40,10 @@ sovietwave and doomerwave.
 | Part | State |
 | --- | --- |
 | VOSTOK engine: 8 signals, 6 macros, SUB, LEIER | done |
-| 64 factory sounds in six styles | done |
+| 68 factory sounds: six styles and four drum kits | done |
+| The crew at power-on, Machine Hall kit, fulfilling the plan, SMK-37 buttons SPUR and CHORD | done |
 | Faux-Cyrillic lettering, VOSTOK colour palette, start screen | done |
-| Missions, "Five-Year Plan" sequencer, Radio Studio, lesson mode | in preparation |
+| Missions, Radio Studio, lesson mode | in preparation |
 | English screen texts (LANGUAGE setting) | in preparation |
 
 This manual does not yet describe the parts "in preparation". Until then, the other functions work as in Felucca.
@@ -93,7 +94,7 @@ VOSTOK computes in Z37 formula code: frequency modulation with two operators. A 
 the more overtones appear and the brighter the sound. Instead of hundreds of settings there are eight ready-made
 recipes, the **signals**, and six **macros** that change several things at once.
 
-## The eight signals (knob SIGNL)
+## The signals (knob SIGNL)
 
 | No. | Signal | Screen | Sound | Use |
 | --- | --- | --- | --- | --- |
@@ -105,6 +106,7 @@ recipes, the **signals**, and six **macros** that change several things at once.
 | 6 | Northern Lights | POLAR | FM bell | sovietwave melodies |
 | 7 | Radio Message | FUNK | noise, metal | hi-hats, snares, sounds |
 | 8 | Machine Hall | HALLE | falling pitch | kick, tom, click |
+| 9 | Kit | KIT | the whole drum set | one track for every drum (see the crew) |
 
 ## The macros
 
@@ -123,9 +125,66 @@ LEIER.
 
 > **Remember, Pioneer:** More radiation, more overtones!
 
-# The 64 factory sounds
+# The crew and the Five-Year Plan
 
-The first sixteen sounds are the founding crew. Then come eight sounds for each style.
+## The crew
+
+When you switch on, all four tracks are already manned, each with a pattern in the sequencer. Press PLAY and the crew
+plays.
+
+| Track | Role | Sound | Pattern |
+| --- | --- | --- | --- |
+| 1 | Bass | VOSTOK-1 | OFFBEAT |
+| 2 | Pad | TUNDRA | PAD |
+| 3 | Lead | MOLNIJA | LEAD |
+| 4 | Rhythm | MASCHINENHALLE | MOTORIK |
+
+## The Machine Hall
+
+The ninth signal is called **KIT**. With it, one single track plays the whole drum set: the key decides which drum
+sounds.
+
+| Note | Drum |
+| --- | --- |
+| 36 (C2) | Stomper (bass drum) |
+| 37 | Rim shot |
+| 38, 40 | Forge (snare) |
+| 39 | Applause (clap) |
+| 42, 44 | Spark (closed hi-hat) |
+| 46 | Steam (open hi-hat) |
+| 41, 43, 45, 47, 48, 50 | Kettle drums (toms, at their pitch) |
+| 56 | Telemetry beep |
+
+On the keys these notes are two octaves down: press OCT- twice. In the sequencer they are simply notes.
+
+In a kit the macros work differently: **STRAL** makes all drums brighter or darker (the middle = as built), **START**
+is the length of the hits (32 = as built), **STILL** makes them rough like an old cassette.
+
+Four kit sounds come with it: MASCHINENHALLE, MARSCHKAPELLE, SCHLURFKIT and RUNDFUNKKIT. And three new patterns under
+SAVE > PHRASES: **MARSCH** (march), **MOTORIK** and **SCHLURF** (the slow doomer shuffle).
+
+## Fulfilling the plan
+
+While the music plays, the device counts how often the selected track's pattern has gone round. Every four rounds it
+reports: PLAN 25 %, PLAN 50 %, PLAN 75 %. After sixteen rounds it shows **PLAN ERFÜLLT!** (plan fulfilled!) – and the
+next plan begins.
+
+## The SMK-37's buttons
+
+| Button | What it does |
+| --- | --- |
+| NOTE REPEAT tapped | **SPUR (track):** select the next track (1: BASS, 2: FLÄCHE, 3: LEAD, 4: RHYTHMUS) |
+| NOTE REPEAT held | as before: knobs turned while holding it snap back when you let go |
+| CHORD | the envelope pages; pressed again, the LFO pages |
+
+All other buttons stay as they were.
+
+> **Remember, Pioneer:** Whoever overfulfils the plan simply keeps playing.
+
+# The 68 factory sounds
+
+The first sixteen sounds are the founding crew. Then come eight sounds for each style and the Machine Hall's four
+drum kits.
 
 | No. | Group | Sounds |
 | --- | --- | --- |
@@ -136,15 +195,18 @@ The first sixteen sounds are the founding crew. Then come eight sounds for each 
 | 41–48 | Darkwave | KATHEDRALE, NEBELBANK, SCHATTENCHOR, TIEFSEE, NACHTWACHE, SCHWARZMEER, ORGELHALLE, MITTERNACHT |
 | 49–56 | Sovietwave | SALJUT, MIR, SOJUS, KOSMONAUT, STERNENKARTE, TAIGAWALD, SCHWERELOS, WOSTOK-6 |
 | 57–64 | Doomerwave | HINTERHOF, NIESELREGEN, TRAMHALTE, KUECHENRADIO, SPAETSCHICHT, TREPPENHAUS, TONBAND, LETZTE TRAM |
+| 65–68 | Machine Hall | MASCHINENHALLE, MARSCHKAPELLE, SCHLURFKIT, RUNDFUNKKIT |
 
 KNOB 4 (LIST) filters the list by bass, lead, pad, pluck, keys, drum and FX.
 
 # Listening examples
 
-Six little pieces played by the device's real sound code: only the VOSTOK engine and its factory sounds, nothing changed but the volume. Listen closely, then play them yourself!
+Eight little pieces played by the device's real sound code: only the VOSTOK engine and its factory sounds, nothing changed but the volume. Listen closely, then play them yourself!
 
 | Style | Listen | Sounds |
 | --- | --- | --- |
+| The crew | <audio controls preload="none" src="../hoerproben/besatzung.mp3"></audio> | VOSTOK-1, TUNDRA, MOLNIJA, MASCHINENHALLE |
+| Machine Hall | <audio controls preload="none" src="../hoerproben/maschinenhalle.mp3"></audio> | MARSCHKAPELLE, SCHLURFKIT |
 | Minimal wave | <audio controls preload="none" src="../hoerproben/minimal-wave.mp3"></audio> | VOSTOK-1, SIGNALTON, KLICKTAKT, FUNKTURM |
 | Coldwave | <audio controls preload="none" src="../hoerproben/coldwave.mp3"></audio> | FROSTBASS, KALTFRONT, NORDLICHT, STAHLMARSCH |
 | Post-punk | <audio controls preload="none" src="../hoerproben/post-punk.mp3"></audio> | FABRIKHALLE, SAITENERSATZ, TROMMLER, FUNKTURM |
